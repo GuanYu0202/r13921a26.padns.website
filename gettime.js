@@ -1,7 +1,8 @@
 function showTime() {
     let now = new Date();
-    now.setHours(now.getHours()+8); // UTC+8 (Taipei)
-    document.getElementById('currentTime').innerHTML = now.toISOString().replace('T', ' ').substring(0, 19);
+    let options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true, timeZone: 'Asia/Taipei' };
+    let formattedTime = new Intl.DateTimeFormat('zh-TW', options).format(now);
+    document.getElementById('currentTime').innerHTML = formattedTime;
 }
 
 showTime();
