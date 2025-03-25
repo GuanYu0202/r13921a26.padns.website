@@ -36,13 +36,13 @@ function displayMessage(name, message)
 	msg_emt.style.color = "black";
     msg_emt.classList.add("message");
     msg_emt.innerHTML = `<em>${name}:</em> <b>${message}</b>`; // Italic 
-    document.getElementById("board").appendChild(msg_emt);
+    document.querySelector(".board").appendChild(msg_emt);
 }
 
 // Part 2: visitor counter
-let visitor_cnt = sessionStorage.getItem("visitorCount") || 0;
+let visitor_cnt = localStorage.getItem("visitorCount") || 0;
 visitor_cnt++;
-sessionStorage.setItem("visitorCount", visitor_cnt);
+localStorage.setItem("visitorCount", visitor_cnt);
 
 // update number
 document.addEventListener("DOMContentLoaded", () => 

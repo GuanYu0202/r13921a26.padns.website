@@ -6,22 +6,26 @@
     <style>
 	body
 	{
-		background-color: #a9a9a9;
-		font-family: Times New Roman;
+	  background-color: #a9a9a9;
+	  font-family: Times New Roman;
 	}
 	.content
 	{
-		background-color: rgba(0, 0, 0, 0.4);
-		padding: 20px;
-		border-radius: 10px;
-		max-width: 800px;
-		margin: 0 auto;
+	  background-color: rgba(0, 0, 0, 0.4);
+	  padding: 20px;
+	  border-radius: 10px;
+	  max-width: 800px;
+	  margin: 0 auto;
 	}
 	.board
 	{
-		background-color: rgba(255, 255, 255, 1);
-		max-width: 400px;
-		margin: 0 auto;
+	  background-color: rgba(255, 255, 255, 1);
+	  max-width: 400px;
+	  margin: 0 auto;
+	}
+	.currentTime
+	{
+	  color: #ffffff;
 	}
     h1 
 	{
@@ -35,7 +39,7 @@
     }
     a 
 	{
-      color: navy;
+      color: #000080;
       font-size: 16px;
     }
     p 
@@ -63,7 +67,7 @@
 	  <textarea id="message_input" placeholder="Message"></textarea><br>
       <button onclick="addMessage()">Send Your Message^^</button><br>
 	  <div class="board"></div>
-      <time id="currentTime"></time>
+      <time class="currentTime"></time>
 	</div>
     <script src="gettime.js"></script>
 	<script src="board.js"></script>
