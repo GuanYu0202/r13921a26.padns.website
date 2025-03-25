@@ -33,8 +33,9 @@ function displayMessage(name, message)
     const msg_emt = document.createElement("p");
 	
 	// post the message to <div> board
+	msg_emt.style.color = "black";
     msg_emt.classList.add("message");
-    msg_emt.innerHTML = `<em>${name}:</em> ${message}`; // Italic 
+    msg_emt.innerHTML = `<em>${name}:</em> <b>${message}</b>`; // Italic 
     document.getElementById("board").appendChild(msg_emt);
 }
 
