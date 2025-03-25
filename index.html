@@ -4,24 +4,50 @@
     <title>r13921a26's Website</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <style>
-    h1 {
+    h1 
+	{
       color: #e7122f;
       font-size: 28px;
     }
-    a {
+	h2 
+	{
+      color: #e7122f;
+      font-size: 28px;
+    }
+    a 
+	{
       color: navy;
       font-size: 16px;
     }
-    p {
+    p 
+	{
       color: #1E90FF;
       font-size: 19px;
     }
+	img
+	{
+	  width: 150px;
+	  border-radius: 50%;
+	  margin: 10px;
+	}
     </style>
   </head>
   <body>
       <h1 class="title"><b>Welcome to r13921a26's Website!!</b></h1><br>
-      <p>This is a test website!</p><br>
+	  <img src="test.jpg" alt="photograph">
+      <p>Hello everyone, I'm a student studying electrical engineering at National Taiwan University.</p><br>
+	  <p>This is my midterm project!</p><br>
+	  
+	  <h2>Visitor Counter: <span id="visitor_cnt">0</span></h2><br>
+	  
+	  <h2>Instant Message Board</h2><br>
+	  <input type="text" id="name_input" placeholder="Name">
+	  <textarea id="message_input" placeholder="Message"></textarea>
+      <button onclick="addMessage()">Send Your Message^^</button>
+	  <div id="board"></div>
+	  
       <time id="currentTime"></time>
       <script src="gettime.js"></script>
+	  <script src="board.js"></script>
   </body>
 </html>
