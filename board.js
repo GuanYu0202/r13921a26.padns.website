@@ -39,7 +39,8 @@ function displayMessage(name, message)
 }
 
 // Part 2: visitor counter
-let visitor_cnt = sessionStorage.getItem("visitorCount") || 0;
+// utilize localStorage to store the number of visitors
+let visitor_cnt = localStorage.getItem("visitorCount") || 0;
 visitor_cnt++;
 sessionStorage.setItem("visitorCount", visitor_cnt);
 
