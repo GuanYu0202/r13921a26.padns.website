@@ -17,11 +17,20 @@
 	  max-width: 800px;
 	  margin: 0 auto;
 	}
+	.IMB
+	{
+	  background-color: rgba(52, 52, 112, 1);
+	  max-width: 400px;
+	  padding: 5px;
+	  margin-left: 0 auto;
+	  border-radius: 10px;
+	}
 	.board
 	{
-	  background-color: rgba(255, 255, 255, 1);
+	  background-color: rgba(255, 255, 255, 0.7);
 	  max-width: 400px;
-	  margin: 0 auto;
+	  padding-left: 10px;
+	  margin-left: 0 auto;
 	  border-radius: 10px;
 	}
 	.currentTime
@@ -32,21 +41,20 @@
 	{
       color: #ffffff;
       font-size: 28px;
+	  margin-bottom: 10px;
     }
 	h2 
 	{
-      color: #3399e6;
+      color: #59ebb8;
       font-size: 18px;
-    }
-    a 
-	{
-      color: #000080;
-      font-size: 16px;
+	  margin: 0px;
+	  margin-bottom: 0px;
     }
     p 
 	{
       color: #ffffff;
       font-size: 20px;
+	  margin: 0px;
     }
 	img
 	{
@@ -58,16 +66,20 @@
   </head>
   <body>
     <div class="content">
-      <h1 class="title"><b>Welcome to r13921a26's Website!!</b></h1><br>
+      <h1 class="title"><b>Welcome to r13921a26's Website!!</b></h1>
 	  <img src="test.jpg" alt="photograph">
       <p>Hello everyone, I'm a student studying electrical engineering at National Taiwan University.</p><br>
 	  <p>This is my midterm project!</p><br>
-	  <h2>Visitor Counter: <span id="visitor_cnt">1</span></h2><br>
-	  <h2>Instant Message Board</h2><br>
-	  <input type="text" id="name_input" placeholder="Name"><br>
-	  <textarea id="message_input" placeholder="Message"></textarea><br>
-      <button onclick="addMessage()">Send Your Message^^</button><br>
-	  <div class="board"></div>
+	  <div class="IMB">
+	    <h2>Instant Message Board</h2><br>
+	    <input type="text" id="name_input" placeholder="Name"><br>
+	    <textarea id="message_input" placeholder="Message"></textarea><br>
+        <button onclick="addMessage()">Send Your Message^^</button><br>
+	    <div class="board"></div>
+	  </div>
+	  <div class="visit">
+	    <h2>Visitor Counter: <span id="visitor_cnt">1</span></h2><br>
+	  </div>
       <time class="currentTime"></time>
 	</div>
     <script src="gettime.js"></script>
