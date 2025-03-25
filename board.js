@@ -39,11 +39,10 @@ function displayMessage(name, message)
 }
 
 // Part 2: visitor counter
-// utilize localStorage to store the number of visitors
-let visitor_cnt = localStorage.getItem("visitorCount") || 0;
+let visitor_cnt = sessionStorage.getItem("visitorCount") || 0;
 visitor_cnt++;
 sessionStorage.setItem("visitorCount", visitor_cnt);
 
 // update number
 document.addEventListener("DOMContentLoaded", () => 
-{document.getElementById("visitorCount").innerText = visitor_cnt;});
+{document.getElementById("visitor_cnt").innerText = visitor_cnt;});
