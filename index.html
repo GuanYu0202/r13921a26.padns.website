@@ -17,6 +17,12 @@
 	  max-width: 800px;
 	  margin: 0 auto;
 	}
+	.main_photo
+	{
+	  width: 300px;
+	  border-radius: 50%;
+	  margin: 10px;
+	}
 	.IMB
 	{
 	  background-color: rgba(52, 52, 112, 1);
@@ -56,18 +62,14 @@
       font-size: 20px;
 	  margin: 0px;
     }
-	img
-	{
-	  width: 300px;
-	  border-radius: 50%;
-	  margin: 10px;
-	}
     </style>
   </head>
   <body>
     <div class="content">
       <h1 class="title"><b>Welcome to r13921a26's Website!!</b></h1>
-	  <img src="test.jpg" alt="photograph">
+	  <div class="main_photo">
+	    <img src="test.jpg" alt="photograph">
+	  </div>
       <p>Hello everyone, I'm a student studying electrical engineering at National Taiwan University.</p><br>
 	  <p>This is my midterm project!</p><br>
 	  <div class="IMB">
@@ -81,8 +83,8 @@
 	    <h2>Visitor Counter: <span id="visitor_cnt">1</span></h2><br>
 	  </div>
       <time class="currentTime"></time>
+	  <script src="gettime.js"></script>
+	  <script src="board.js"></script>
 	</div>
-    <script src="gettime.js"></script>
-	<script src="board.js"></script>
   </body>
 </html>

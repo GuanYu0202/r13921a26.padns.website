@@ -37,7 +37,7 @@ function displayMessage(name, message)
 	const currentTime = getFormattedTime();
 	msg_emt.style.color = "black";
     msg_emt.classList.add("message");
-    msg_emt.innerHTML = `<em>${name}:</em> <b>${message}</b>     <span class="time">(${msg_time})</span>`; // Italic 
+    msg_emt.innerHTML = `<em>${name}:</em><b>${message}</b> <span class="time">${msg_time}</span>`; // Italic 
     document.querySelector(".board").appendChild(msg_emt);
 }
 
