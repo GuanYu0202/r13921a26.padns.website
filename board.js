@@ -29,13 +29,15 @@ function addMessage()
 // func of showing message
 function displayMessage(name, message) 
 {
-	// create <p> to place the message
+	// create <p> to place the message and derive time
     const msg_emt = document.createElement("p");
+	const msg_time = getFormattedTime();
 	
 	// post the message to <div> board
+	const currentTime = getFormattedTime();
 	msg_emt.style.color = "black";
     msg_emt.classList.add("message");
-    msg_emt.innerHTML = `<em>${name}:</em> <b>${message}</b>`; // Italic 
+    msg_emt.innerHTML = `<em>${name}:</em> <b>${message}</b>     <span class="time">(${msg_time})</span>`; // Italic 
     document.querySelector(".board").appendChild(msg_emt);
 }
 
