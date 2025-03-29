@@ -4,7 +4,7 @@ function loadPage(page)
 	fetch(`/pages/${page}.html`)
 		.then(response => response.text())
 		.then(html => {
-			document.querySelector(".content").innerHTML = html;
+			document.getElementById(".content").innerHTML = html;
 			// do not reload the whole page
 			window.history.pushState({}, "", "#" + page);
 		})
