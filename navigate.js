@@ -1,7 +1,7 @@
 function loadPage(page) 
 {
 	// utilize Fetch API to load content dynamically
-	fetch(`/pages/${page}.html`)
+	fetch(`pages/${page}.html`)
 		.then(response => response.text())
 		.then(html => {
 			document.getElementById("content").innerHTML = html;
