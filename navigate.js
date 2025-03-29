@@ -4,7 +4,7 @@ function loadPage(page)
 	fetch(`/pages/${page}.html`)
 		.then(response => response.text())
 		.then(html => {
-			document.getElementById(".content").innerHTML = html;
+			document.getElementById("content").innerHTML = html;
 			// do not reload the whole page
 			window.history.pushState({}, "", "#" + page);
 		})
@@ -16,7 +16,7 @@ window.addEventListener("popstate", function() {
 	loadPage(page);
 });
 
-window.onload = function() {
+document.addEventListener("DOMContentLoaded", function() {
 	let page = location.hash.substring(1) || "main";
 	loadPage(page);
-};
+};)
