@@ -19,4 +19,4 @@ window.addEventListener("popstate", function() {
 document.addEventListener("DOMContentLoaded", function() {
 	let page = location.hash.substring(1) || "main";
 	loadPage(page);
-};)
+});
