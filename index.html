@@ -31,14 +31,16 @@
 	{
 	  list-style: none;
 	  padding: 0;
+	  border-radius: 10px;
 	  margin: 0;
 	  display: flex;
 	}
 	#navbar li
 	{
-	  padding: 10px 20px;
+	  padding: 10px 10px;
+	  border-radius: 10px;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: background 0.5s;
 	}
 	#navbar li:hover 
 	{
@@ -48,6 +50,7 @@
 	{
 	  color: white;
 	  padding: 10px 20px;
+	  border-radius: 10px;
       cursor: pointer;
 	  text-decoration: none;
 	  display: inline-block;
@@ -100,7 +103,7 @@
     }
 	img
 	{
-	  width: 300px;
+	  width: 200px;
 	  border-radius: 50%;
 	  margin: 10px;
 	}
@@ -116,9 +119,9 @@
     <div class="ontop">
 	  <nav id="navbar">
 	    <ul>
-		  <li><a href="#main" onclick="loadPage('main'); return false;">Main</a></li>
-          <li><a href="#about" onclick="loadPage('about'); return false;">About Me</a></li>
-          <li><a href="#user" onclick="loadPage('user'); return false;">User List</a></li>
+		  <li><a href="#main" onclick="loadPage('main'); return false;"><b>Main</b></a></li>
+          <li><a href="#about" onclick="loadPage('about'); return false;"><b>About Me</b></a></li>
+          <li><a href="#user" onclick="loadPage('user'); return false;"><b>User List</b></a></li>
 	    </ul>
 	  </nav>
 	</div>
