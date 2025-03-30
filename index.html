@@ -3,6 +3,9 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <meta charset="UTF-8">
+	<script src="gettime.js"></script>
+	<script src="board.js"></script>
+	<script src="navigate.js" defer></script>
 	<title>r13921a26's Website</title>
 	<style>
 	body
@@ -57,6 +60,7 @@
 	}
 	#navbar a:hover 
 	{
+	  border-radius: 10px;
       background: #555;
     }
 	#content
@@ -119,9 +123,10 @@
     <div class="ontop">
 	  <nav id="navbar">
 	    <ul>
-		  <li><a href="#main" onclick="loadPage('main'); return false;"><b>Main</b></a></li>
-          <li><a href="#about" onclick="loadPage('about'); return false;"><b>About Me</b></a></li>
-          <li><a href="#user" onclick="loadPage('user'); return false;"><b>User List</b></a></li>
+		  <li><a href="locate?p=main" onclick="loadPage('main'); return false;"><b>Main</b></a></li>
+          <li><a href="locate?p=about" onclick="loadPage('about'); return false;"><b>About Me</b></a></li>
+          <li><a href="locate?p=user" onclick="loadPage('user'); return false;"><b>User List</b></a></li>
+		  <li><a href="#" onclick="openSignupWindow(); return false;"><b>Create Account</b></a></li>
 	    </ul>
 	  </nav>
 	</div>
@@ -130,10 +135,5 @@
 	  <p>Click on the menu above to navigate through the different pages!</p>
 	  <time class="currentTime"></time>
 	</div>
-	
-	<!-- included script--> 
-	<script src="gettime.js"></script>
-	<script src="board.js"></script>
-	<script src="navigate.js" defer></script>
   </body>
 </html>
