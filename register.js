@@ -36,8 +36,9 @@ async function register()
 	
 	if (signupError) 
 	{
-		errorMsg.innerText = error.message;
-		return;
+		errorMsg.innerText = signUpError.message;
+        console.error("Sign-up error: ", signUpError);
+        return;
 	}
 
 	console.log("Sign-up successful, proceeding with alert.");
