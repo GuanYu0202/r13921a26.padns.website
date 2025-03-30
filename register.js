@@ -28,6 +28,7 @@ async function register()
 		return;
 	}
 	
+	// signup auth
 	const { data, error: signUpError } = await supabase.auth.signUp(
 	{
 		email: email
@@ -39,6 +40,8 @@ async function register()
 		return;
 	}
 
+	console.log("Sign-up successful, proceeding with alert.");
+	
 	localStorage.setItem("username", username);
 	localStorage.setItem("email", email);
 
