@@ -7,53 +7,34 @@ async function register()
 {
 	const username = document.getElementById("username").value;
 	const email = document.getElementById("email").value;
-	const password = document.getElementById("password").value;
-	const confirmPassword = document.getElementById("confirmPassword").value;
 	const errorMsg = document.getElementById("signupError");
 
-	if (password !== confirmPassword) 
+	if (!username || !email) 
 	{
-		errorMsg.innerText = "Passwords do not match.";
+		errorMsg.innerText = "Username and email cannot be empty.";
 		return;
 	}
-
-	// email available
-	const { user, error } = await supabase.auth.signUp(
-	{
-		email: email,
-		password: password,
-	});
-
-	if (error) 
-	{
-		errorMsg.innerText = error.message;
-		return;
-	}
-	alert("Registration successful, please check the verification letter.");
 	
-	// update data to database table
-	const { error: insertError } = await supabase
+	// is email available?
+	 const { data: existingUser, error: checkError } = await supabase
 		.from("users")
-		.insert([
-		{
-			id: user.id,
-			username: username,
-			email: email,
-			user_id: user.id
-		}
-		]);
+		.select("email")
+		.eq("email", email)
+		.single()
+		.then(
+		({ data: existingUser, error }) => {
+			if (existingUser) 
+			{
+				errorMsg.innerText = "Email has already been registered.";
+				return;
+			}
 
-	if (insertError) 
-	{
-		errorMsg.innerText = insertError.message;
-		return;
-	}
+			localStorage.setItem("username", username);
+			localStorage.setItem("email", email);
+
+			alert("Almost done! Please check the verification page.");
+		});
 	
-	if (user) 
-	{
-		await supabase.from("profiles").insert([{ id: user.id, username: username }]);
-	}
-
 	if (window.opener) 
 	{
 		window.close();

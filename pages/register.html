@@ -7,6 +7,12 @@
 	<script src="../register.js" defer></script>
 	<title>Registration</title>
 	<style>
+	body
+	{
+	  background-color: #a9a9a9;
+	  font-family: Times New Roman, DFKai-sb;
+	}
+	
 	/* register */
 	#signupModal 
 	{
@@ -64,8 +70,6 @@
 		<h2>Sign Up</h2>
 		<input type="text" id="username" placeholder="User name">
 		<input type="email" id="email" placeholder="Email">
-		<input type="password" id="password" placeholder="Password">
-		<input type="password" id="confirmPassword" placeholder="Confirm Password">
 		<button onclick="register()">Sign up</button>
 		<p id="signupError" style="color: red;"></p>
 	  </div>

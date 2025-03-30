@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta charset="UTF-8">
+	<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+	<script src="verify.js" defer></script>
+	<title>Email Verification</title>
+	<style>
+	body
+	{
+	  background-color: #a9a9a9;
+	  font-family: Times New Roman;
+	}
+	
+	/* verify */
+	h1 
+	{
+      color: #ffffff;
+      font-size: 28px;
+	  margin-bottom: 10px;
+    }
+	input 
+	{
+	  width: 100%;
+	  padding: 8px;
+	  margin: 10px 0;
+	}
+	button 
+	{
+	  width: 100%;
+	  padding: 10px;
+	  margin: 5px 0;
+	  border-radius: 5px;
+	  background: #333;
+	  color: white;
+	  border: none;
+	}
+	
+    </style>
+  </head>
+  <body>
+	<h1>Setup Your Password!</h1>
+    <div id="passwordForm" style="display: none;">
+      <label for="password">Set Your Password:</label>
+      <input type="password" id="password" placeholder="Password">
+	  <label for="confirmPassword">Confirm Password:</label>
+	  <input type="password" id="confirmPassword" placeholder="Confirm Password">
+	  <p id="passwordError" style="color: red;"></p>
+      <button onclick="completeRegistration()">Setting Password</button>
+	</div>
+  </body>
+</html>
