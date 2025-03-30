@@ -28,6 +28,11 @@ async function register()
 				errorMsg.innerText = "Email has already been registered.";
 				return;
 			}
+			
+			const { data, error: signUpError } = await supabase.auth.signUp(
+			{
+				email: email
+			});
 
 			localStorage.setItem("username", username);
 			localStorage.setItem("email", email);

@@ -5,17 +5,42 @@ const supabase = window.supabase.createClient(
 
 async function verifyEmail() 
 {
-	const { data: { user }, error } = await supabase.auth.getUser();
-
-	if (error || !user) 
+	const urlParams = new URLSearchParams(window.location.search);
+	const accessToken = urlParams.get('access_token');
+	const refreshToken = urlParams.get('refresh_token');
+	const errorCode = urlParams.get('error_code');
+	
+	if (errorCode) 
 	{
-		document.getElementById("message").innerText = "Error fetching user data.";
+		document.getElementById("message").innerText = "Error: Unable to verify your email.";
 		document.getElementById("message").classList.add("error");
 		return;
 	}
 
-	document.getElementById("passwordForm").style.display = "block";
-	document.getElementById("message").innerText = "Email verified! Please set your password.";
+	if (accessToken && refreshToken) 
+	{
+		// Set session with the access and refresh tokens
+		const { error } = await supabase.auth.setSession({
+			access_token: accessToken,
+			refresh_token: refreshToken,
+		});
+
+		if (error) 
+		{
+			document.getElementById("message").innerText = "Error: " + error.message;
+			document.getElementById("message").classList.add("error");
+		} 
+		else 
+		{
+			document.getElementById("passwordForm").style.display = "block";
+			document.getElementById("message").innerText = "Email verified! Please set your password.";
+		}
+	} 
+	else 
+	{
+		document.getElementById("message").innerText = "Invalid verification link.";
+		document.getElementById("message").classList.add("error");
+	}
 }
 
 async function completeRegistration() 
@@ -39,23 +64,14 @@ async function completeRegistration()
 	}
 
 	// update supabase auth password
-	const { data, error: signUpError } = await supabase.auth.signUp(
+	const { error: updateError } = await supabase.auth.updateUser(
 	{
-		email: email,
 		password: password
 	});
 
-	if (signUpError) 
+	if (updateError) 
 	{
-		alert("Error signing up: " + signUpError.message);
-		return;
-	}
-
-	// is user ok?
-	const user = data.user;
-	if (!user) 
-	{
-		alert("Error: User not found after signup.");
+		alert("Error updating password: " + signUpError.message);
 		return;
 	}
 
