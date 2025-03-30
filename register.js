@@ -20,25 +20,29 @@ async function register()
 		.from("users")
 		.select("email")
 		.eq("email", email)
-		.single()
-		.then(
-		({ data: existingUser, error }) => {
-			if (existingUser) 
-			{
-				errorMsg.innerText = "Email has already been registered.";
-				return;
-			}
-			
-			const { data, error: signUpError } = await supabase.auth.signUp(
-			{
-				email: email
-			});
+		.single();
 
-			localStorage.setItem("username", username);
-			localStorage.setItem("email", email);
+	if (existingUser) 
+	{
+		errorMsg.innerText = "Email has already been registered.";
+		return;
+	}
+	
+	const { data, error: signUpError } = await supabase.auth.signUp(
+	{
+		email: email
+	});
+	
+	if (signupError) 
+	{
+		errorMsg.innerText = error.message;
+		return;
+	}
 
-			alert("Almost done! Please check the verification page.");
-		});
+	localStorage.setItem("username", username);
+	localStorage.setItem("email", email);
+
+	alert("Almost done! Please check the verification page.");
 	
 	if (window.opener) 
 	{
