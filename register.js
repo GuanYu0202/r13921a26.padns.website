@@ -29,6 +29,7 @@ async function register()
 		errorMsg.innerText = error.message;
 		return;
 	}
+	alert("Registration successful, please check the verification letter.");
 	
 	// update data to database table
 	const { error: insertError } = await supabase
@@ -48,7 +49,6 @@ async function register()
 		return;
 	}
 	
-	alert("Registration successful, please check the verification letter.");
 	if (user) 
 	{
 		await supabase.from("profiles").insert([{ id: user.id, username: username }]);
