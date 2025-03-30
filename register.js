@@ -30,7 +30,7 @@ async function register()
 	
 	// signup auth
 	// random password for initial auth
-	const randomPassword = Math.random().toString(36).slice(-8);
+	const randomPassword = Math.random().toString(36).slice(-12);
 	const { data, error: signUpError } = await supabase.auth.signUp(
 	{
 		email: email,
