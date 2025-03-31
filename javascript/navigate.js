@@ -11,6 +11,14 @@ function loadPage(page)
 			if (page === "user")
 			{
 				fetchUsers();
+				setTimeout(() => 
+				{
+                    const refreshButton = document.getElementById("refresh-users");
+                    if (refreshButton) 
+					{
+                        refreshButton.addEventListener("click", fetchUsers);
+                    }
+                }, 100);
 			}
 		})
 		.catch(error => console.error("Loading Error:", error));
