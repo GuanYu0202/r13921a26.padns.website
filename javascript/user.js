@@ -14,28 +14,36 @@ async function fetchUsers()
 	// create user data container
 	userList.innerHTML = "<li>Loading...</li>";
 
-	const { data, error } = await supabase
-		.from("users")
-		.select("username");
-
-	if (error) 
+	try 
 	{
-		console.error("Get user error:", error);
-		userList.innerHTML = "<li style='color: red;'>Cannot get user data.</li>";
-		return;
-	}
+        const { data, error } = await supabase
+            .from("users")
+            .select("username");
 
-	if (data.length > 0) 
-	{
-		data.forEach(user => 
+        if (error) 
 		{
-			const li = document.createElement("li");
-			li.textContent = "User: " + user.username;
-			userList.appendChild(li);
-		});
-	} 
-	else 
+            console.error("Get user error:", error);
+            userList.innerHTML = "<li style='color: red;'>Cannot get user data.</li>";
+            return;
+        }
+
+        if (data.length > 0) 
+		{
+            data.forEach(user => 
+			{
+                const li = document.createElement("li");
+                li.textContent = "User: " + user.username;
+                userList.appendChild(li);
+            });
+        } 
+		else 
+		{
+            userList.innerHTML = "<li>None of user exists.</li>";
+        }
+    } 
+	catch (error) 
 	{
-		userList.innerHTML = "<li>None of user exists.</li>";
-	}
+        console.error("Error fetching users:", error);
+        userList.innerHTML = "<li style='color: red;'>Error fetching user data.</li>";
+    }
 }
