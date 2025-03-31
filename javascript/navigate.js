@@ -27,7 +27,7 @@ function loadPage(page)
 function openSignupWindow() 
 {
 	const signupUrl = "pages/register_temp.html";
-	window.open(signupUrl, "Signup", "width=550,height=600,noopener");
+	window.open(signupUrl, "Signup", "width=470,height=370,noopener");
 }
 
 function getCurrentPage() 
