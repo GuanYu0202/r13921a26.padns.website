@@ -7,6 +7,11 @@ function loadPage(page)
 			document.getElementById("content").innerHTML = html;
 			// do not reload the whole page
 			window.history.pushState({}, "", "locate?p=" + page);
+			
+			if (page === "user")
+			{
+				fetchUsers();
+			}
 		})
 		.catch(error => console.error("Loading Error:", error));
 }
