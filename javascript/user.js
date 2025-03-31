@@ -42,3 +42,5 @@ async function fetchUsers()
 		}
 	}
 }
+
+window.fetchUsers = fetchUsers;
