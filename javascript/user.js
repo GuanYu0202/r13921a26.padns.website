@@ -12,10 +12,13 @@ async function fetchUsers()
 	}
 
 	// create user data container
-	userList.innerHTML = "<li>Loading...</li>";
+	userList.innerHTML = "";
 
 	try 
 	{
+		// change showing text
+		userList.innerHTML = "<p>Loading...</p>";
+		
         const { data, error } = await supabase
             .from("users")
             .select("username");
@@ -26,14 +29,17 @@ async function fetchUsers()
             userList.innerHTML = "<li style='color: red;'>Cannot get user data.</li>";
             return;
         }
+		
+		// clear showing text for incoming user names
+		userList.innerHTML = "";
 
         if (data.length > 0) 
 		{
             data.forEach(user => 
 			{
-                const li = document.createElement("li");
-                li.textContent = "User: " + user.username;
-                userList.appendChild(li);
+                const p = document.createElement("p");
+                p.textContent = "User: " + user.username;
+                userList.appendChild(p);
             });
         } 
 		else 
