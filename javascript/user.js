@@ -42,8 +42,3 @@ async function fetchUsers()
 		}
 	}
 }
-
-document.addEventListener("DOMContentLoaded", () => 
-{
-	document.getElementById("user-list") && fetchUsers();
-});
