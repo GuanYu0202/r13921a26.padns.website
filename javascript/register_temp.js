@@ -9,7 +9,7 @@ async function register()
 	const email = document.getElementById("email").value;
 	const password = document.getElementById("password").value;
 	const confirmPassword = document.getElementById("confirmPassword").value;
-	const errorMsg = document.getElementById("signupError");
+	const errorMsg = document.getElementById("signUpError");
 
 	if (!username || !email) 
 	{
@@ -44,7 +44,7 @@ async function register()
 	
 	// no auth method (temporary)
 	// update data to table
-	const { data, error: signUpError } = await supabase
+	const { data, error: updateError } = await supabase
 		.from("users")
 		.insert([
 		{
@@ -54,10 +54,10 @@ async function register()
 		},
 		]);
 	
-	if (signUpError) 
+	if (updateError) 
 	{
-		errorMsg.innerText = signUpError.message;
-        console.error("Sign-up error: ", signUpError);
+		errorMsg.innerText = updateError.message;
+        console.error("Sign-up error: ", updateError);
         return;
 	}
 
