@@ -57,6 +57,5 @@ async function signup()
 	}
 
 	alert("Sign up successful!");
-	closeSignupModal();
 	location.reload();
 }

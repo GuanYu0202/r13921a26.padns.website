@@ -30,6 +30,5 @@ async function signin()
 	
 	alert("Sign in successful!");
 	localStorage.setItem("currentUser", existedUser.username);
-	closeSigninModal();
 	location.reload();
 }
