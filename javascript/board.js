@@ -1,10 +1,15 @@
-// Part 1: message board
+const supabase = window.supabase.createClient(
+	"https://egrpteffoyaajqxgaepx.supabase.co", 
+	"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVncnB0ZWZmb3lhYWpxeGdhZXB4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMxNjExMzcsImV4cCI6MjA1ODczNzEzN30.uYSZ-yINbOVQMqHY4FXswSCPRMvSAFTbiwhWHFdQ6jc"
+)
+
+// Part 1: message board (update to supabase)
 // boardcastchannel to implement the instant message board
 const board = new BroadcastChannel("chat_channel");
 
 // eavesdrop message event
 board.onmessage = (event) => 
-{displayMessage(event.data.name, event.data.message);};
+{displayMessage(event.data.name, event.data.message, event.data.create_at);};
 
 // func of adding message 
 function addMessage() 
@@ -12,26 +17,44 @@ function addMessage()
 	// enter name&message
     const name = document.getElementById("name_input").value.trim();
     const message = document.getElementById("message_input").value.trim();
+	const create_at = new Date().toISOString(); // obtain current timestamp
+	
+	let now = new Date();
+    let options = {hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true, timeZone: 'Asia/Taipei'};
+    return new Intl.DateTimeFormat('zh-TW', options).format(now);
 	
 	// check all data is ready on!
     if (!name || !message) return alert("Please enter your name and message!");
 	
-	// post the message
-    board.postMessage({ name, message });
+	// update message to table
+	const { error: messageError } = await supabase
+		.from("msg_b")
+		.insert([
+		{
+			name: name,
+			message: message,
+			create_at: create_at, 
+		},
+		]);
 	
-	// show the message
-    displayMessage(name, message);
+	if (messageError) 
+	{
+        console.error("Error when  message:", error);
+        return alert("Failed to send message!");
+    }
 	
-	// clear the frame of message
+	// post the message to all opening pages
+    board.postMessage({ name, message, create_at });
+	
+	// clear message frame, but reserve user frame for testing login user
     document.getElementById("message_input").value = "";
 }
 
 // func of showing message
-function displayMessage(name, message) 
+function displayMessage(name, message, create_at) 
 {
 	// create <p> to place the message and derive time
     const msg_emt = document.createElement("p");
-	const msg_time = getFormattedTime();
 	
 	// post the message to <div> board
 	const currentTime = getFormattedTime();
@@ -40,12 +63,3 @@ function displayMessage(name, message)
     msg_emt.innerHTML = `<em>${name}:</em><b>${message}</b>          <span class="time">${msg_time}</span>`; // Italic 
     document.querySelector(".board").appendChild(msg_emt);
 }
-
-// Part 2: visitor counter
-let visitor_cnt = localStorage.getItem("visitorCount") || 0;
-visitor_cnt++;
-localStorage.setItem("visitorCount", visitor_cnt);
-
-// update number
-document.addEventListener("DOMContentLoaded", () => 
-{document.getElementById("visitor_cnt").innerText = visitor_cnt;});
