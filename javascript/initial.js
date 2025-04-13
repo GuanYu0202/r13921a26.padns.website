@@ -14,9 +14,35 @@ function loadPage(page)
 			document.getElementById("content").innerHTML = html;
 			// do not reload the whole page
 			window.history.pushState({}, "", "locate?p=" + page);
+			// load js files
+			const script = document.createElement('script');
+			
+			if (page === "main")
+			{
+				script.src = 'javascript/visitor.js';
+				script.defer = true;
+				document.body.appendChild(script);
+			}
+			
+			if (page === "about")
+			{
+				script.src = 'javascript/pic_load.js';
+				script.defer = true;
+				document.body.appendChild(script);
+			}
 			
 			if (page === "user")
 			{
+				script.src = 'javascript/user.js';
+				script.defer = true;
+				document.body.appendChild(script);
+				
+				const refresh_button = document.getElementById("refresh-users");
+				if (refresh_button)
+				{
+					refresh_button.addEventListener("click", fetchUsers);
+				}
+				
 				fetchUsers();
 				setTimeout(() => 
 				{
