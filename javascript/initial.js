@@ -21,7 +21,7 @@ function loadPage(page)
 			
 			if (page === "main")
 			{
-				updateVisitorCount()
+				updateViewCount();
 			}
 			
 			if (page === "about")
