@@ -7,12 +7,12 @@ const supabase = window.supabase.createClient(
 function loadPage(page) 
 {
 	// utilize Fetch API to load content dynamically
-	fetch(`pages/${page}.html`)
+	fetch(`./pages/${page}.html`)
 		.then(response => response.text())
 		.then(html => {
 			document.getElementById("content").innerHTML = html;
 			// do not reload the whole page
-			window.history.pushState({}, "", "/r13921a26.padns.website/pages/" + page);
+			window.history.pushState({}, "", `?p=${page}`);
 			// load js files
 			const script = document.createElement('script');
 			
