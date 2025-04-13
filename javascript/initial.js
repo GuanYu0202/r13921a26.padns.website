@@ -38,22 +38,6 @@ function loadPage(page)
 				script.src = 'javascript/user.js';
 				script.defer = true;
 				document.body.appendChild(script);
-				
-				const refresh_button = document.getElementById("refresh-users");
-				if (refresh_button)
-				{
-					refresh_button.addEventListener("click", fetchUsers);
-				}
-				
-				fetchUsers();
-				setTimeout(() => 
-				{
-                    const refreshButton = document.getElementById("refresh-users");
-                    if (refreshButton) 
-					{
-                        refreshButton.addEventListener("click", fetchUsers);
-                    }
-                }, 100);
 			}
 			
 			if (page === "board")
@@ -71,30 +55,16 @@ const h = window.screen.height;
 
 function openSignupModal() 
 {
-	//const signupUrl = "pages/signup.html";
-	//window.open(signupUrl, "Sign up", `width=${w*0.5},height=${h*0.5},noopener`);
 	document.getElementById("signupModal").style.display = "block";
+	document.getElementById("signinModal").style.display = "none";
 	document.getElementById("content").style.display = "none";
 }
 
 function openSigninModal() 
 {
-	//const signinUrl = "pages/signin.html";
-	//window.open(signinUrl, "Sign in", `width=${w*0.5},height=${h*0.5},noopener`);
+	document.getElementById("signupModal").style.display = "none";
 	document.getElementById("signinModal").style.display = "block";
 	document.getElementById("content").style.display = "none";
-}
-
-function closeSignupModal() 
-{
-	document.getElementById("signupModal").style.display = "none";
-	document.getElementById("content").style.display = "block";
-}
-
-function closeSigninModal() 
-{
-	document.getElementById("signinModal").style.display = "none";
-	document.getElementById("content").style.display = "block";
 }
 
 function getCurrentPage() 
