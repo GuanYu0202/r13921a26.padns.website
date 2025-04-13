@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <meta charset="UTF-8">
 	<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-	<script src="../javascript/register_temp.js" defer></script>
+	<script src="../javascript/signin.js" defer></script>
 	<title>Registration</title>
 	<style>
 	body
@@ -66,15 +66,13 @@
     </style>
   </head>
   <body>
-	<div id="signupModal">
+	<div id="signinModal">
 	  <div class="modal-content">
-		<h2>Sign Up</h2>
-		<input type="text" id="username" placeholder="User name">
-		<input type="email" id="email" placeholder="Email">
+		<h2>Sign In</h2>
+		<input type="text" id="email" placeholder="User email">
         <input type="password" id="password" placeholder="Password">
-	    <input type="password" id="confirmPassword" placeholder="Confirm Password">
-		<button onclick="register()">Sign up</button>
-		<p id="signUpError" style="color: red;"></p>
+		<button onclick="signin()">Sign In</button>
+		<p id="signInError" style="color: red;"></p>
 	  </div>
 	</div>
   </body>

@@ -4,7 +4,6 @@ const supabase = window.supabase.createClient(
 	"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVncnB0ZWZmb3lhYWpxeGdhZXB4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMxNjExMzcsImV4cCI6MjA1ODczNzEzN30.uYSZ-yINbOVQMqHY4FXswSCPRMvSAFTbiwhWHFdQ6jc"
 )
 
-/* --- navigate.js start ---*/
 function loadPage(page) 
 {
 	// utilize Fetch API to load content dynamically
@@ -53,20 +52,47 @@ function loadPage(page)
                     }
                 }, 100);
 			}
+			
+			if (page === "board")
+			{
+				script.src = 'javascript/board.js';
+				script.defer = true;
+				document.body.appendChild(script);
+			}
 		})
 		.catch(error => console.error("Loading Error:", error));
 }
 
 function openSignupWindow() 
 {
-	const signupUrl = "pages/register_temp.html";
-	window.open(signupUrl, "Signup", "width=470,height=370,noopener");
+	const signupUrl = "pages/signup.html";
+	window.open(signupUrl, "Sign up", "width=470,height=370,noopener");
+}
+
+function openLoginWindow() 
+{
+	const loginUrl = "pages/signin.html";
+	window.open(loginUrl, "Sign in", "width=470,height=370,noopener");
 }
 
 function getCurrentPage() 
 {
 	const params = new URLSearchParams(window.location.search);
 	return params.get("p");
+}
+
+function updateUserDisplay(username) 
+{
+	document.getElementById("user-display").innerText = `Logged in as: ${username}`;
+}
+
+function logout() 
+{
+	localStorage.removeItem("currentUser");
+	updateUserDisplay("Guest");
+	document.getElementById("chat").style.display = "none";
+	document.getElementById("status").style.display = "none";
+	alert("You have been signed out!");
 }
 
 window.addEventListener("popstate", function() 
@@ -80,4 +106,25 @@ document.addEventListener("DOMContentLoaded", function()
 	let page = getCurrentPage();
 	if (page) { loadPage(page); }
 });
-/* --- navigate.js end ---*/
+
+window.addEventListener("DOMContentLoaded", () => 
+{
+	const currentUser = localStorage.getItem("currentUser");
+	const chatConfig = document.getElementById("chat");
+	const statusConfig = document.getElementById("status");
+	const userDisplay = document.getElementById("user-display");
+
+	if (currentUser) 
+	{
+		const { username } = JSON.parse(currentUser);
+		updateUserDisplay(username);
+		chatConfig.style.display = "inline-block";
+		statusConfig.style.display = "inline-block";
+	} 
+	else 
+	{
+		updateUserDisplay("Guest");
+		chatConfig.style.display = "none";
+		statusConfig.style.display = "none";
+	}
+});
