@@ -19,14 +19,6 @@ function loadPage(page)
 			// load js files
 			const script = document.createElement('script');
 			
-			if (page === "main")
-			{
-				script.src = 'javascript/visitor.js';
-				script.defer = true;
-				document.body.appendChild(script);
-				updateVisitorCount();
-			}
-			
 			if (page === "about")
 			{
 				script.src = 'javascript/icon_load.js';
