@@ -70,7 +70,7 @@ function openSignupWindow()
 {
 	//const signupUrl = "pages/signup.html";
 	//window.open(signupUrl, "Sign up", `width=${w*0.5},height=${h*0.5},noopener`);
-	document.getElementById("signupModal").style.display = "inline";
+	document.getElementById("signupModal").style.display = "block";
 	document.getElementById("content").style.display = "none";
 }
 
@@ -78,20 +78,20 @@ function openSigninWindow()
 {
 	//const signinUrl = "pages/signin.html";
 	//window.open(signinUrl, "Sign in", `width=${w*0.5},height=${h*0.5},noopener`);
-	document.getElementById("signinModal").style.display = "inline";
+	document.getElementById("signinModal").style.display = "block";
 	document.getElementById("content").style.display = "none";
 }
 
 function closeSignupWindow() 
 {
 	document.getElementById("signupModal").style.display = "none";
-	document.getElementById("content").style.display = "inline";
+	document.getElementById("content").style.display = "block";
 }
 
 function closeSigninWindow() 
 {
 	document.getElementById("signinModal").style.display = "none";
-	document.getElementById("content").style.display = "inline";
+	document.getElementById("content").style.display = "block";
 }
 
 function getCurrentPage() 
