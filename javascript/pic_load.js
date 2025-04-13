@@ -5,7 +5,7 @@ window.addEventListener("DOMContentLoaded", async () =>
 	const fileName = img.dataset.filename; 
 	const { data, error } = supabase
 		.storage
-		.from('usericons')
+		.from('msgpic')
 		.getPublicUrl(fileName);
 
 	if (error) 

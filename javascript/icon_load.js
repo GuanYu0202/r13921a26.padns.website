@@ -15,5 +15,6 @@ window.addEventListener("DOMContentLoaded", async () =>
 	else 
 	{
 		img.src = data.publicUrl;
+		console.log("Successful read icon!");
 	}
 });
