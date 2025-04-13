@@ -1,10 +1,6 @@
 async function fetchUsers() 
 {
 	const userList = document.getElementById("user-list");
-	if (!userList)
-	{
-		return;
-	}
 
 	// create user data container
 	userList.innerHTML = "";
@@ -33,7 +29,7 @@ async function fetchUsers()
             data.forEach(user => 
 			{
                 const p = document.createElement("p");
-                p.textContent = "User: " + user.username;
+                p.textContent = user.username;
                 userList.appendChild(p);
             });
         } 
