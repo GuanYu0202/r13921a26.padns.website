@@ -63,16 +63,19 @@ function loadPage(page)
 		.catch(error => console.error("Loading Error:", error));
 }
 
+const w = window.screen.width;
+const h = window.screen.height;
+
 function openSignupWindow() 
 {
 	const signupUrl = "pages/signup.html";
-	window.open(signupUrl, "Sign up", "width=470,height=370,noopener");
+	window.open(signupUrl, "Sign up", 'width=${w*0.3},height=${h*0.4},noopener');
 }
 
 function openSigninWindow() 
 {
 	const loginUrl = "pages/signin.html";
-	window.open(loginUrl, "Sign in", "width=470,height=370,noopener");
+	window.open(loginUrl, "Sign in", 'width=${w*0.3},height=${h*0.4},noopener');
 }
 
 function getCurrentPage() 
