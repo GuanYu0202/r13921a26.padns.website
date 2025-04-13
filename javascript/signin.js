@@ -34,29 +34,7 @@ async function signin()
 	}
 	
 	alert("Sign in successful!");
-	
-	if (window.opener && !window.opener.closed) 
-	{
-		window.opener.postMessage({ type: "signin", username: existedUser.username });
-		window.close();
-	} 
-	else 
-	{
-		localStorage.setItem("currentUser", username);
-		window.location.href = "../index.html";
-	}
-	
-	/*
 	localStorage.setItem("currentUser", existedUser.username);
-	
-	
-	if (window.opener) 
-	{
-		window.close();
-	} 
-	else 
-	{
-		window.location.href = "../index.html";
-	}
-	*/
+	closeSigninModal();closeSignupWindow()
+	location.reload();
 }

@@ -68,14 +68,26 @@ const h = window.screen.height;
 
 function openSignupWindow() 
 {
-	const signupUrl = "pages/signup.html";
-	window.open(signupUrl, "Sign up", `width=${w*0.5},height=${h*0.5},noopener`);
+	//const signupUrl = "pages/signup.html";
+	//window.open(signupUrl, "Sign up", `width=${w*0.5},height=${h*0.5},noopener`);
+	document.getElementById("signupModal").style.display = "flex";
 }
 
 function openSigninWindow() 
 {
-	const signinUrl = "pages/signin.html";
-	window.open(signinUrl, "Sign in", `width=${w*0.5},height=${h*0.5},noopener`);
+	//const signinUrl = "pages/signin.html";
+	//window.open(signinUrl, "Sign in", `width=${w*0.5},height=${h*0.5},noopener`);
+	document.getElementById("signupModal").style.display = "flex";
+}
+
+function closeSignupWindow() 
+{
+	document.getElementById("signupModal").style.display = "none";
+}
+
+function closeSigninWindow() 
+{
+	document.getElementById("signupModal").style.display = "none";
 }
 
 function getCurrentPage() 
