@@ -126,6 +126,6 @@ window.addEventListener("DOMContentLoaded", () =>
 	{
 		updateUserDisplay("Guest");
 		chatConfig.style.display = "none";
-		statusConfig.innerHTML = `<li><a href="#" onclick="openSigninWindow(); return false;"><b>Sign In</b></a></li>`;
+		statusConfig.innerHTML = `<a href="#" onclick="openSigninWindow(); return false;"><b>Sign In</b></a>`;
 	}
 });
