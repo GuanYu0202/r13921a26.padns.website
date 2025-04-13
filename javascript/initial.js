@@ -26,7 +26,7 @@ function loadPage(page)
 			
 			if (page === "about")
 			{
-				script.src = 'javascript/pic_load.js';
+				script.src = 'javascript/icon_load.js';
 				script.defer = true;
 				document.body.appendChild(script);
 			}
