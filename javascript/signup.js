@@ -4,7 +4,7 @@ async function signup()
 	const email = document.getElementById("signupEmail").value;
 	const password = document.getElementById("signupPassword").value;
 	const confirmPassword = document.getElementById("signupConfirmPassword").value;
-	const errorMsg = document.getElementById("signUpError");
+	const errorMsg = document.getElementById("signupError");
 
 	if (!username || !email) 
 	{
