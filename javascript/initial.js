@@ -75,7 +75,7 @@ function openSignupWindow()
 function openSigninWindow() 
 {
 	const loginUrl = "pages/signin.html";
-	window.open(loginUrl, "Sign in", `width=${w*0.3},height=${h*0.3},noopener`);
+	window.open(loginUrl, "Sign in", `width=${w*0.3},height=${h*0.35},noopener`);
 }
 
 function getCurrentPage() 

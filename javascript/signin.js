@@ -15,6 +15,12 @@ async function signin()
 		.eq("email", email)
 		.single();
 
+	if (checkError || !existedUser) 
+	{
+		errorMsg.innerText = "Email not found!";
+		return;
+	}
+
 	if (!email || !password) 
 	{
 		errorMsg.innerText = "User email and password cannot be empty.";
@@ -27,7 +33,7 @@ async function signin()
 		return;
 	}
 	
-	localStorage.setItem("currentUser", username);
+	localStorage.setItem("currentUser", existedUser.username);
 
 	alert("Sign in successful!");
 	
