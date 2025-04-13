@@ -69,7 +69,7 @@ function loadPage(page)
 const w = window.screen.width;
 const h = window.screen.height;
 
-function openSignupWindow() 
+function openSignupModal() 
 {
 	//const signupUrl = "pages/signup.html";
 	//window.open(signupUrl, "Sign up", `width=${w*0.5},height=${h*0.5},noopener`);
@@ -77,7 +77,7 @@ function openSignupWindow()
 	document.getElementById("content").style.display = "none";
 }
 
-function openSigninWindow() 
+function openSigninModal() 
 {
 	//const signinUrl = "pages/signin.html";
 	//window.open(signinUrl, "Sign in", `width=${w*0.5},height=${h*0.5},noopener`);
@@ -85,13 +85,13 @@ function openSigninWindow()
 	document.getElementById("content").style.display = "none";
 }
 
-function closeSignupWindow() 
+function closeSignupModal() 
 {
 	document.getElementById("signupModal").style.display = "none";
 	document.getElementById("content").style.display = "block";
 }
 
-function closeSigninWindow() 
+function closeSigninModal() 
 {
 	document.getElementById("signinModal").style.display = "none";
 	document.getElementById("content").style.display = "block";
@@ -112,6 +112,7 @@ function signout()
 {
 	localStorage.removeItem("currentUser");
 	alert("You have been signed out!");
+	location.reload();
 }
 
 window.addEventListener("popstate", function() 
@@ -143,16 +144,6 @@ window.addEventListener("DOMContentLoaded", () =>
 	{
 		updateUserDisplay("Guest");
 		chatConfig.style.display = "none";
-		statusConfig.innerHTML = `<a href="#" onclick="openSigninWindow(); return false;"><b>Sign In</b></a>`;
-	}
-});
-
-window.addEventListener("message", (event) => 
-{
-	if (event.data.type === "signin") 
-	{
-		const username = event.data.username;
-		localStorage.setItem("currentUser", username);
-		location.reload();
+		statusConfig.innerHTML = `<a href="#" onclick="openSigninModal(); return false;"><b>Sign In</b></a>`;
 	}
 });

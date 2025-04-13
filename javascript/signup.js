@@ -1,8 +1,3 @@
-const supabase = window.supabase.createClient(
-	"https://egrpteffoyaajqxgaepx.supabase.co", 
-	"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVncnB0ZWZmb3lhYWpxeGdhZXB4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMxNjExMzcsImV4cCI6MjA1ODczNzEzN30.uYSZ-yINbOVQMqHY4FXswSCPRMvSAFTbiwhWHFdQ6jc"
-)
-
 async function signup() 
 {
 	const username = document.getElementById("username").value;
@@ -62,6 +57,6 @@ async function signup()
 	}
 
 	alert("Sign up successful!");
-	closeSignupWindow()
+	closeSignupModal();
 	location.reload();
 }
