@@ -19,6 +19,11 @@ function loadPage(page)
 			// load js files
 			const script = document.createElement('script');
 			
+			if (page === "main")
+			{
+				updateVisitorCount()
+			}
+			
 			if (page === "about")
 			{
 				script.src = 'javascript/icon_load.js';
