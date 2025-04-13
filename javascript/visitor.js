@@ -1,5 +1,5 @@
 // Part 2: visitor counter (update to supabase)
-document.addEventListener("DOMContentLoaded", async () => 
+async function updateVisitorCount() 
 {
 	let { data, error: countError } = await supabase
 		.from("visitor")
@@ -28,7 +28,4 @@ document.addEventListener("DOMContentLoaded", async () =>
 		console.error("Error when update visitor count：", updateError);
 		return;
 	}
-
-	// show a new number in pages
-	document.getElementById("visitor_cnt").innerText = visitor_cnt;
 });

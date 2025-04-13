@@ -24,6 +24,7 @@ function loadPage(page)
 				script.src = 'javascript/visitor.js';
 				script.defer = true;
 				document.body.appendChild(script);
+				updateVisitorCount();
 			}
 			
 			if (page === "about")

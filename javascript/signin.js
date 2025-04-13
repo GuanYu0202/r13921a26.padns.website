@@ -1,7 +1,7 @@
 async function signin() 
 {
-	const email = document.getElementById("email").value;
-	const password = document.getElementById("password").value;
+	const email = document.getElementById("signinEmail").value;
+	const password = document.getElementById("signinPassword").value;
 	const errorMsg = document.getElementById("signInError");
 
 	const { data: existedUser, error: checkError } = await supabase
