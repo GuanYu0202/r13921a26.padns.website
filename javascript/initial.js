@@ -12,7 +12,7 @@ function loadPage(page)
 		.then(html => {
 			document.getElementById("content").innerHTML = html;
 			// do not reload the whole page
-			window.history.pushState({}, "", "locate?p=" + page);
+			window.history.pushState({}, "", "/pages/" + page);
 			// load js files
 			const script = document.createElement('script');
 			
@@ -92,9 +92,8 @@ function updateUserDisplay(username)
 function logout() 
 {
 	localStorage.removeItem("currentUser");
-	updateUserDisplay("Guest");
-	document.getElementById("chat").style.display = "none";
-	document.getElementById("status").style.display = "none";
+	// updateUserDisplay("Guest");
+	// document.getElementById("chat").style.display = "none";
 	alert("You have been signed out!");
 }
 
@@ -121,12 +120,12 @@ window.addEventListener("DOMContentLoaded", () =>
 	{
 		updateUserDisplay(currentUser);
 		chatConfig.style.display = "inline-block";
-		statusConfig.style.display = "inline-block";
+		statusConfig.innerHTML = `<a href="#" onclick="signout(); return false;"><b>Sign Out</b></a>`
 	} 
 	else 
 	{
 		updateUserDisplay("Guest");
 		chatConfig.style.display = "none";
-		statusConfig.style.display = "none";
+		statusConfig.innerHTML = `<li><a href="#" onclick="openSigninWindow(); return false;"><b>Sign In</b></a></li>`;
 	}
 });
