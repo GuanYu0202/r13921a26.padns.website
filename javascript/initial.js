@@ -6,6 +6,9 @@ const supabase = window.supabase.createClient(
 
 function loadPage(page) 
 {
+	document.getElementById("signupModal").style.display = "none";
+	document.getElementById("signinModal").style.display = "none";
+	document.getElementById("content").style.display = "block";
 	// utilize Fetch API to load content dynamically
 	fetch(`./pages/${page}.html`)
 		.then(response => response.text())
