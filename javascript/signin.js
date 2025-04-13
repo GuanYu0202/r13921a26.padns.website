@@ -37,7 +37,7 @@ async function signin()
 	
 	if (window.opener && !window.opener.closed) 
 	{
-		window.opener.postMessage({ type: "signin", username }, "*");
+		window.opener.postMessage({ type: "signin", username: existedUser.username });
 		window.close();
 	} 
 	else 

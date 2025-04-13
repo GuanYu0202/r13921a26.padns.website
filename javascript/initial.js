@@ -133,10 +133,7 @@ window.addEventListener("message", (event) =>
 	if (event.data.type === "signin") 
 	{
 		const username = event.data.username;
-		localStorage.setItem("currentUser", JSON.stringify({ username }));
-
-		updateUserDisplay(username);
-		document.getElementById("chat").style.display = "inline-block";
-		document.getElementById("status").innerHTML = `<a href="#" onclick="signout(); return false;"><b>Sign Out</b></a>`;
+		localStorage.setItem("currentUser", username);
+		location.reload();
 	}
 });
