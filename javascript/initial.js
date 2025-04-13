@@ -119,8 +119,7 @@ window.addEventListener("DOMContentLoaded", () =>
 
 	if (currentUser) 
 	{
-		const { username } = JSON.parse(currentUser);
-		updateUserDisplay(username);
+		updateUserDisplay(currentUser);
 		chatConfig.style.display = "inline-block";
 		statusConfig.style.display = "inline-block";
 	} 
