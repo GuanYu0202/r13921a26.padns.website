@@ -12,7 +12,7 @@ function loadPage(page)
 		.then(html => {
 			document.getElementById("content").innerHTML = html;
 			// do not reload the whole page
-			window.history.pushState({}, "", "/pages/" + page);
+			window.history.pushState({}, "", "/r13921a26.padns.website/pages/" + page);
 			// load js files
 			const script = document.createElement('script');
 			
