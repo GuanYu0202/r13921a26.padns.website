@@ -30,5 +30,5 @@ async function signin()
 	
 	alert("Sign in successful!");
 	localStorage.setItem("currentUser", existedUser.username);
-	location.reload();
+	location.href = "https://guanyu0202.github.io/r13921a26.padns.website/?p=main";
 }
