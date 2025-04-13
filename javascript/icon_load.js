@@ -1,6 +1,6 @@
 window.addEventListener("DOMContentLoaded", async () => 
 {
-	const img = document.getElementById("msg_pic");
+	const img = document.getElementById("user-icon");
 	// obtain load filename with data_filename
 	const fileName = img.dataset.filename; 
 	const { data, error } = supabase
@@ -11,7 +11,7 @@ window.addEventListener("DOMContentLoaded", async () =>
 	if (error) 
 	{
 		console.error("Error when loading picture: ", error.message);
-	} 
+	}
 	else 
 	{
 		img.src = data.publicUrl;
