@@ -74,8 +74,8 @@ function openSignupWindow()
 
 function openSigninWindow() 
 {
-	const loginUrl = "pages/signin.html";
-	window.open(loginUrl, "Sign in", `width=${w*0.5},height=${h*0.5},noopener`);
+	const signinUrl = "pages/signin.html";
+	window.open(signinUrl, "Sign in", `width=${w*0.5},height=${h*0.5},noopener`);
 }
 
 function getCurrentPage() 
@@ -92,8 +92,6 @@ function updateUserDisplay(username)
 function signout() 
 {
 	localStorage.removeItem("currentUser");
-	// updateUserDisplay("Guest");
-	// document.getElementById("chat").style.display = "none";
 	alert("You have been signed out!");
 }
 
@@ -127,5 +125,18 @@ window.addEventListener("DOMContentLoaded", () =>
 		updateUserDisplay("Guest");
 		chatConfig.style.display = "none";
 		statusConfig.innerHTML = `<a href="#" onclick="openSigninWindow(); return false;"><b>Sign In</b></a>`;
+	}
+});
+
+window.addEventListener("message", (event) => 
+{
+	if (event.data.type === "signin") 
+	{
+		const username = event.data.username;
+		localStorage.setItem("currentUser", JSON.stringify({ username }));
+
+		updateUserDisplay(username);
+		document.getElementById("chat").style.display = "inline-block";
+		document.getElementById("status").innerHTML = `<a href="#" onclick="signout(); return false;"><b>Sign Out</b></a>`;
 	}
 });

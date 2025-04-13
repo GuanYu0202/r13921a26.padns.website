@@ -63,6 +63,18 @@ async function signup()
 
 	alert("Sign up successful!");
 	
+	if (window.opener && !window.opener.closed) 
+	{
+		window.opener.postMessage({ type: "signin", username }, "*");
+		window.close();
+	} 
+	else 
+	{
+		localStorage.setItem("currentUser", username);
+		alert("Please refresh your web page!")
+	}
+	
+	/*
 	if (window.opener) 
 	{
 		window.close();
@@ -71,4 +83,5 @@ async function signup()
 	{
 		window.location.href = "../index.html";
 	}
+	*/
 }

@@ -33,9 +33,22 @@ async function signin()
 		return;
 	}
 	
-	localStorage.setItem("currentUser", existedUser.username);
-
 	alert("Sign in successful!");
+	
+	if (window.opener && !window.opener.closed) 
+	{
+		window.opener.postMessage({ type: "signin", username }, "*");
+		window.close();
+	} 
+	else 
+	{
+		localStorage.setItem("currentUser", username);
+		window.location.href = "../index.html";
+	}
+	
+	/*
+	localStorage.setItem("currentUser", existedUser.username);
+	
 	
 	if (window.opener) 
 	{
@@ -45,4 +58,5 @@ async function signin()
 	{
 		window.location.href = "../index.html";
 	}
+	*/
 }
