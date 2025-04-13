@@ -28,4 +28,4 @@ async function updateVisitorCount()
 		console.error("Error when update visitor count：", updateError);
 		return;
 	}
-});
+}
