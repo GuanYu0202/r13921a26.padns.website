@@ -69,13 +69,13 @@ const h = window.screen.height * 0.4;
 function openSignupWindow() 
 {
 	const signupUrl = "pages/signup.html";
-	window.open(signupUrl, "Sign up", 'width=${w},height=${h},noopener');
+	window.open(signupUrl, "Sign up", `width=${w},height=${h},noopener`);
 }
 
 function openSigninWindow() 
 {
 	const loginUrl = "pages/signin.html";
-	window.open(loginUrl, "Sign in", 'width=${w},height=${h},noopener');
+	window.open(loginUrl, "Sign in", `width=${w},height=${h},noopener`);
 }
 
 function getCurrentPage() 
