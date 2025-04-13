@@ -28,4 +28,7 @@ async function updateVisitorCount()
 		console.error("Error when update visitor count：", updateError);
 		return;
 	}
+
+	// update new number in page
+	document.getElementById("visitor_cnt").innerText = visitor_cnt;
 }
