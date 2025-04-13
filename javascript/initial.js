@@ -89,7 +89,7 @@ function updateUserDisplay(username)
 	document.getElementById("user-display").innerText = `Logged in as: ${username}`;
 }
 
-function logout() 
+function signout() 
 {
 	localStorage.removeItem("currentUser");
 	// updateUserDisplay("Guest");
