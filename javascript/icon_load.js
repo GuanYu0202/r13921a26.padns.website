@@ -6,7 +6,7 @@ window.addEventListener("DOMContentLoaded", async () =>
 	const { data, error } = supabase
 		.storage
 		.from('usericons')
-		.getPublicUrl(fileName);
+		.createSignedUrl(fileName, 900); // 15 mins
 
 	if (error) 
 	{
@@ -14,7 +14,8 @@ window.addEventListener("DOMContentLoaded", async () =>
 	}
 	else 
 	{
-		img.src = data.publicUrl;
 		console.log("Successful read icon!");
+		console.log("URL: ", data.signedUrl);
+		img.src = data.signedUrl;
 	}
 });
