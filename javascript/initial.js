@@ -69,7 +69,7 @@ function openSignupWindow()
 	window.open(signupUrl, "Sign up", "width=470,height=370,noopener");
 }
 
-function openLoginWindow() 
+function openSigninWindow() 
 {
 	const loginUrl = "pages/signin.html";
 	window.open(loginUrl, "Sign in", "width=470,height=370,noopener");
