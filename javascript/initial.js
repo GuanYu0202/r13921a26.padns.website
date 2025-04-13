@@ -1,3 +1,10 @@
+// initialize supabase
+const supabase = window.supabase.createClient(
+	"https://egrpteffoyaajqxgaepx.supabase.co", 
+	"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVncnB0ZWZmb3lhYWpxeGdhZXB4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMxNjExMzcsImV4cCI6MjA1ODczNzEzN30.uYSZ-yINbOVQMqHY4FXswSCPRMvSAFTbiwhWHFdQ6jc"
+)
+
+/* --- navigate.js start ---*/
 function loadPage(page) 
 {
 	// utilize Fetch API to load content dynamically
@@ -47,3 +54,4 @@ document.addEventListener("DOMContentLoaded", function()
 	let page = getCurrentPage();
 	if (page) { loadPage(page); }
 });
+/* --- navigate.js end ---*/
