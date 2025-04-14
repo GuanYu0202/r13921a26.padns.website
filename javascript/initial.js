@@ -94,7 +94,7 @@ function signout()
 {
 	localStorage.removeItem("currentUser");
 	alert("You have been signed out!");
-	await loadPage("main");
+	loadPage("main");
 }
 
 window.addEventListener("popstate", function() 
