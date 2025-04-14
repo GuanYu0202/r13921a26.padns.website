@@ -73,14 +73,21 @@ function getCurrentPage()
 
 function updateUserDisplay(username) 
 {
-	document.getElementById("user-display").innerText = `Logged in as: ${username}`;
+	if (username)
+	{
+		document.getElementById("user-display").innerText = `Welcome ${username}! What a nice day!`;
+	}
+	else
+	{
+		document.getElementById("user-display").innerText = `Hello ${username}! Please sign in!`;
+	}
 }
 
 function signout() 
 {
 	localStorage.removeItem("currentUser");
 	alert("You have been signed out!");
-	location.reload();
+	loadPage("main");
 }
 
 window.addEventListener("popstate", function() 
@@ -104,14 +111,14 @@ window.addEventListener("DOMContentLoaded", () =>
 
 	if (currentUser) 
 	{
-		updateUserDisplay(currentUser);
 		chatConfig.style.display = "inline-block";
 		statusConfig.innerHTML = `<a href="#" onclick="signout(); return false;"><b>Sign Out</b></a>`
 	} 
 	else 
 	{
-		updateUserDisplay("Guest");
 		chatConfig.style.display = "none";
 		statusConfig.innerHTML = `<a href="#" onclick="openSigninModal(); return false;"><b>Sign In</b></a>`;
 	}
+	
+	updateUserDisplay(currentUser);
 });
