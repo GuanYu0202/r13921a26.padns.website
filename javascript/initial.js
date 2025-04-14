@@ -115,13 +115,13 @@ window.addEventListener("DOMContentLoaded", () =>
 	const chatConfig = document.getElementById("reg");
 	const profileConfig = document.getElementById("usr_p");
 	const statusConfig = document.getElementById("status");
-	const userDisplay = document.getElementById("user-display");
+	//const userDisplay = document.getElementById("user-display");
 
 	if (currentUser) 
 	{
 		chatConfig.style.display = "inline-block";
 		profileConfig.style.display = "inline-block";
-		statusConfig.innerHTML = `<a href="#" onclick="signout(); return false;"><b>Sign Out</b></a>`
+		statusConfig.innerHTML = `<a href="#" onclick="signout(); return false;"><b>Sign Out</b></a>`;
 	} 
 	else 
 	{
