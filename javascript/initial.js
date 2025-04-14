@@ -112,19 +112,21 @@ document.addEventListener("DOMContentLoaded", function()
 window.addEventListener("DOMContentLoaded", () => 
 {
 	const currentUser = localStorage.getItem("currentUser");
-	const chatConfig = document.getElementById("chat");
+	const chatConfig = document.getElementById("reg");
+	const profileConfig = document.getElementById("usr_p");
 	const statusConfig = document.getElementById("status");
 	const userDisplay = document.getElementById("user-display");
 
 	if (currentUser) 
 	{
 		chatConfig.style.display = "inline-block";
-		statusConfig.innerHTML = `<a href="#" onclick="signout(); return false;"><b>Sign Out</b></a></li>
-								  <li><a href="#" onclick="loadPage('profile'); return false;"><b>User Profile</b></a>`
+		profileConfig.style.display = "inline-block";
+		statusConfig.innerHTML = `<a href="#" onclick="signout(); return false;"><b>Sign Out</b></a>`
 	} 
 	else 
 	{
 		chatConfig.style.display = "none";
+		profileConfig.style.display = "none";
 		statusConfig.innerHTML = `<a href="#" onclick="openSigninModal(); return false;"><b>Sign In</b></a>`;
 	}
 	
