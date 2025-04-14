@@ -79,7 +79,7 @@ function updateUserDisplay(username)
 	}
 	else
 	{
-		document.getElementById("user-display").innerText = `Hello ${username}! Please sign in!`;
+		document.getElementById("user-display").innerText = `Hello guest! Please sign in!`;
 	}
 }
 
