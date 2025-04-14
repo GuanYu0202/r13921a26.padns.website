@@ -119,8 +119,8 @@ window.addEventListener("DOMContentLoaded", () =>
 	if (currentUser) 
 	{
 		chatConfig.style.display = "inline-block";
-		statusConfig.innerHTML = `<a href="#" onclick="signout(); return false;"><b>Sign Out</b></a>
-								<a href="#" onclick="loadPage('profile'); return false;"><b>User Profile</b></a>`
+		statusConfig.innerHTML = `<a href="#" onclick="signout(); return false;"><b>Sign Out</b></a></li>
+								  <li><a href="#" onclick="loadPage('profile'); return false;"><b>User Profile</b></a>`
 	} 
 	else 
 	{

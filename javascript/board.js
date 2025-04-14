@@ -1,6 +1,7 @@
 const username = localStorage.getItem("currentUser");
 
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", async () => 
+{
 	await loadMessages();
 
 	document.getElementById("message-form").addEventListener("submit", async (e) => 
@@ -8,38 +9,26 @@ document.addEventListener("DOMContentLoaded", async () => {
 		e.preventDefault();
 
 		const content = document.getElementById("message-content").value.trim();
-		const imageFile = document.getElementById("message-image").files[0];
 		
 		if (!content) 
 		{
 			return alert("Please write something!");
 		}
 
-		let imagePath = null;
-		if (imageFile !== null) 
-		{
-			const fileExt = imageFile.name.split('.').pop();
-			const fileName = `messages/${username}_${Date.now()}.${fileExt}`;
-			const { error } = await supabase
-				.storage
-				.from("usericons")
-				.upload(fileName, imageFile);
-			
-			if (error) 
-			{
-				return alert("Error when uploading picture！");
-			}
-			imagePath = fileName;
-		}
-
-		const { error } = await supabase.from("messages").insert([{ username, content, image_path: imagePath }]);
+		const { error } = await supabase
+			.from("messages")
+			.insert
+			([{ 
+				name: username,
+				message: content,
+			}]);
+		
 		if (error)
 		{		
 			return alert("Error when uploading message：" + error.message);
 		}
 
 		document.getElementById("message-content").value = "";
-		document.getElementById("message-image").value = "";
 		await loadMessages();
 	});
 });
