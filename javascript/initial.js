@@ -99,7 +99,7 @@ window.addEventListener("popstate", function()
 document.addEventListener("DOMContentLoaded", function() 
 {
 	let page = getCurrentPage();
-	if (page) { loadPage(page); }
+	if (page) {loadPage(page);}
 });
 
 window.addEventListener("DOMContentLoaded", () => 
