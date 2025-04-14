@@ -9,7 +9,7 @@ window.addEventListener("DOMContentLoaded", async () =>
 	const { data, error } = await supabase
 		.storage
 		.from('usericons')
-		.createSignedUrl(fileName, 900); // 15 mins
+		.createSignedUrl(fileName, 600); // 10 mins
 		
 	alert(`URL: ${data.signedUrl}`);
 	
