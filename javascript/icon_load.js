@@ -13,6 +13,7 @@ window.addEventListener("DOMContentLoaded", async () =>
 	if (error) 
 	{
 		console.error("Error when loading picture: ", error.message);
+		alert("Error when loading picture");
 	}
 	else 
 	{
