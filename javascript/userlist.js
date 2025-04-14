@@ -41,6 +41,6 @@ async function fetchUsers()
 	catch (error) 
 	{
         console.error("Error fetching users:", error);
-        userList.innerHTML = "<li style='color: red;'>Error fetching user data.</li>";
+        userList.innerHTML = "<li style='color: red;'>Error when loading users.</li>";
     }
 }

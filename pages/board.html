@@ -1,9 +1,9 @@
-<h1 class="title"><b>Instant Message Board</b></h1>
-<div class="IMB">
-  <h2>Instant Message Board</h2><br>
-  <input type="text" id="name_input" placeholder="Name"><br>
-  <textarea id="message_input" placeholder="Message"></textarea><br>
-  <button onclick="addMessage()">Send Your Message^^</button><br>
-  <div class="board"></div>
-</div>
+<h1>Instant Message Board</h1>
+<div><span id="message-count">0</span> messages left!</div>
+  <form id="message-form">
+    <textarea id="message-content" placeholder="輸入留言..." required></textarea>
+    <input type="file" id="message-image" accept="image/png, image/jpeg" />
+    <button type="submit">Send</button>
+  </form>
+<div id="messages"></div>
 <time class="currentTime"></time>

@@ -26,14 +26,14 @@ function loadPage(page)
 			
 			if (page === "about")
 			{
-				script.src = 'javascript/icon_load.js';
+				script.src = 'javascript/about.js';
 				script.defer = true;
 				document.body.appendChild(script);
 			}
 			
-			if (page === "user")
+			if (page === "userlist")
 			{
-				script.src = 'javascript/user.js';
+				script.src = 'javascript/userlist.js';
 				script.defer = true;
 				document.body.appendChild(script);
 			}
@@ -41,6 +41,13 @@ function loadPage(page)
 			if (page === "board")
 			{
 				script.src = 'javascript/board.js';
+				script.defer = true;
+				document.body.appendChild(script);
+			}
+			
+			if (page === "profile")
+			{
+				script.src = 'javascript/profile.js';
 				script.defer = true;
 				document.body.appendChild(script);
 			}
@@ -112,7 +119,8 @@ window.addEventListener("DOMContentLoaded", () =>
 	if (currentUser) 
 	{
 		chatConfig.style.display = "inline-block";
-		statusConfig.innerHTML = `<a href="#" onclick="signout(); return false;"><b>Sign Out</b></a>`
+		statusConfig.innerHTML = `<a href="#" onclick="signout(); return false;"><b>Sign Out</b></a>
+								<a href="#" onclick="loadPage('profile'); return false;"><b>User Profile</b></a>`
 	} 
 	else 
 	{

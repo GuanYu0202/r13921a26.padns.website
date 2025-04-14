@@ -9,6 +9,7 @@
 	<script src="javascript/view.js" defer></script>
 	<script src="javascript/signin.js" defer></script>
 	<script src="javascript/signup.js" defer></script>
+	<script src="javascript/profile.js" defer></script>
 	<script src="javascript/gettime.js" defer></script>
 	<title>r13921a26's Website</title>
 	<style>
@@ -24,7 +25,7 @@
 	{
 	  background-color: rgba(0, 0, 0, 0.8);
 	  padding: 20px;
-	  max-width: 800px;
+	  max-width: 960px;
 	  margin: 0 auto;
 	  border-radius: 10px;
 	}
@@ -74,7 +75,7 @@
 	{
 	  background-color: rgba(0, 0, 0, 0.4);
 	  padding: 20px;
-	  max-width: 800px;
+	  max-width: 960px;
 	  margin: 0 auto;
 	  border-radius: 10px;
 	}
@@ -87,9 +88,10 @@
 	{
 	  background-color: rgba(0, 0, 0, 0.4);
 	  padding: 20px;
-	  max-width: 800px;
+	  max-width: 960px;
 	  margin: 0 auto;
 	  border-radius: 10px;
+	  justify-content: center;
 	}
 	.modal-content 
 	{
@@ -125,7 +127,7 @@
 	.IMB
 	{
 	  background-color: rgba(52, 52, 112, 1);
-	  max-width: 400px;
+	  max-width: 960px;
 	  padding: 5px;
 	  margin-left: 0 auto;
 	  border-radius: 10px;
@@ -133,7 +135,7 @@
 	.board
 	{
 	  background-color: rgba(255, 255, 255, 0.7);
-	  max-width: 400px;
+	  max-width: 960px;
 	  padding-left: 10px;
 	  margin-left: 0 auto;
 	  border-radius: 10px;
@@ -177,7 +179,7 @@
 	    <ul>
 		  <li><a href="#" onclick="loadPage('main'); return false;"><b>Main</b></a></li>
           <li><a href="#" onclick="loadPage('about'); return false;"><b>About Me</b></a></li>
-          <li><a href="#" onclick="loadPage('user'); return false;"><b>User List</b></a></li>
+          <li><a href="#" onclick="loadPage('userlist'); return false;"><b>User List</b></a></li>
 		  <li id="chat" style="display: none;">
 		    <a href="#" onclick="loadPage('board'); return false;"><b>Chat Room!</b></a>
 		  </li>

@@ -1,3 +1,129 @@
+const username = localStorage.getItem("currentUser");
+
+document.addEventListener("DOMContentLoaded", async () => {
+	await loadMessages();
+
+	document.getElementById("message-form").addEventListener("submit", async (e) => 
+	{
+		e.preventDefault();
+
+		const content = document.getElementById("message-content").value.trim();
+		const imageFile = document.getElementById("message-image").files[0];
+		
+		if (!content) 
+		{
+			return alert("Please write something!");
+		}
+
+		let imagePath = null;
+		if (imageFile !== null) 
+		{
+			const fileExt = imageFile.name.split('.').pop();
+			const fileName = `messages/${username}_${Date.now()}.${fileExt}`;
+			const { error } = await supabase
+				.storage
+				.from("usericons")
+				.upload(fileName, imageFile);
+			
+			if (error) 
+			{
+				return alert("Error when uploading picture！");
+			}
+			imagePath = fileName;
+		}
+
+		const { error } = await supabase.from("messages").insert([{ username, content, image_path: imagePath }]);
+		if (error)
+		{		
+			return alert("Error when uploading message：" + error.message);
+		}
+
+		document.getElementById("message-content").value = "";
+		document.getElementById("message-image").value = "";
+		await loadMessages();
+	});
+});
+
+async function loadMessages() 
+{
+	const msgDiv = document.getElementById("messages");
+	msgDiv.innerHTML = "";
+
+	const { data: messages, error } = await supabase
+		.from("messages")
+		.select("*")
+		.order("created_at", { ascending: false });
+
+	if (error) 
+	{
+		console.error("Error when loading message: ", error);
+		return;
+	}
+
+	document.getElementById("message-count").innerText = messages.length;
+
+	for (const msg of messages) 
+	{
+		const { data: iconData } = await supabase.storage
+			.from("usericons")
+			.createSignedUrl(`${msg.username}.jpg`, 600);
+		
+		const iconUrl = iconData?.signedUrl || "default.png";
+
+		let html = 
+		`
+		  <div class="message">
+			<img class="user-icon" src="${iconUrl}" />
+			<div class="message-content">
+			  <strong>${msg.username}</strong><br/>${escapeHTML(msg.content)}
+			  <div class="message-time">${new Date(msg.created_at).toLocaleString()}</div>`;
+
+		if (msg.image_path) 
+		{
+			const { data: imgUrl } = await supabase.storage
+				.from("usericons")
+				.createSignedUrl(msg.image_path, 600);
+				
+			html += `<img class="message-img" src="${imgUrl.signedUrl}" />`;
+		}
+
+		if (msg.username === username) 
+		{
+			html += `<div class="delete-btn" onclick="deleteMessage(${msg.id})">Delete Message</div>`;
+		}
+
+		html += `</div></div>`;
+		msgDiv.innerHTML += html;
+	}
+}
+
+async function deleteMessage(id) 
+{
+	if (!confirm("確認刪除留言？")) 
+	{
+		return;
+	}
+	
+	const { error } = await supabase
+		.from("messages")
+		.delete()
+		.eq("id", id);
+	
+	if (error) 
+	{	
+		alert("Delete failed!");
+	}
+	await loadMessages();
+}
+
+function escapeHTML(str) 
+{
+	const div = document.createElement("div");
+	div.innerText = str;
+	return div.innerHTML;
+}
+
+/*
 // Part 1: message board (update to supabase)
 // boardcastchannel to implement the instant message board
 const board = new BroadcastChannel("chat_channel");
@@ -58,3 +184,4 @@ function displayMessage(name, message, create_at)
     msg_emt.innerHTML = `<em>${name}:</em><b>${message}</b>          <span class="time">${msg_time}</span>`; // Italic 
     document.querySelector(".board").appendChild(msg_emt);
 }
+*/
