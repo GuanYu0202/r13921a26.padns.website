@@ -2,7 +2,7 @@ window.addEventListener("DOMContentLoaded", async () =>
 {
 	const img = document.getElementById("user-icon");
 	// obtain load filename with data_filename
-	const fileName = img.dataset.filename; 
+	const fileName = "admin.jpg"; 
 	
 	alert(`icon name: ${fileName}`);
 	
