@@ -34,6 +34,7 @@ document.getElementById("upload-btn").addEventListener("click", async () =>
 			.from("usericons")
 			.createSignedUrl(fileName, 600);
 		
+		document.getElementById("preview").style.display = "block";
 		document.getElementById("icon-preview").src = data.signedUrl;
 	}
 });
