@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function()
 window.addEventListener("DOMContentLoaded", () => 
 {
 	const currentUser = localStorage.getItem("currentUser");
-	const chatConfig = document.getElementById("reg");
+	const chatConfig = document.getElementById("chat");
 	const profileConfig = document.getElementById("usr_p");
 	const statusConfig = document.getElementById("status");
 	//const userDisplay = document.getElementById("user-display");
