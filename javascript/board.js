@@ -28,13 +28,7 @@ document.getElementById("send").addEventListener("click", async () =>
 	document.getElementById("message-content").value = "";
 });
 
-document.addEventListener("DOMContentLoaded", async () => 
-{
-	alert(`current user is ${username}`);
-	await loadMessages();
-});
-
-async function loadMessages() 
+document.getElementById("refresh").addEventListener("click", async () => 
 {
 	if (username)
 	{
@@ -52,9 +46,9 @@ async function loadMessages()
 			return;
 		}
 
-		alert("derive message successful!");
+		alert("obtain message successful!");
 		
-		document.getElementById("message-count").innerText = messages.length;
+		//document.getElementById("message-count").innerText = messages.length;
 
 		for (const msg of messages) 
 		{
@@ -85,7 +79,13 @@ async function loadMessages()
 	{
 		alert("Please sign in to access this page");
 	}
-}
+});
+
+document.addEventListener("DOMContentLoaded", async () => 
+{
+	alert(`current user is ${username}`);
+	await loadMessages();
+});
 
 async function deleteMessage(id) 
 {
