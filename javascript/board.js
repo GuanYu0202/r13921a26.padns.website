@@ -63,9 +63,9 @@ document.getElementById("refresh").addEventListener("click", async () =>
 					<img class="user-icon" src="${iconUrl}" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 12px;" />
 					
 					<div class="message-content" style="flex: 1;">
-						<div style="font-weight: bold; color: #ffffff; font-size: 16px;">${msg.name}</div>
-						<div style="color: #ffffff; font-size: 12px;">${escapeHTML(msg.message)}</div>
-						<div class="message-time" style="color: #ffffff; font-size: 12px;">${new Date(msg.created_at).toLocaleString()}</div>`;
+						<div style="font-weight: bold; color: #ffffff; font-size: 20px;">${msg.name}</div>
+						<div style="color: #ffffff; font-size: 16px;">${escapeHTML(msg.message)}</div>
+						<div class="message-time" style="color: #ffffff; font-size: 14px;">${new Date(msg.created_at).toLocaleString()}</div>`;
 
 			if (msg.name === username) 
 			{
