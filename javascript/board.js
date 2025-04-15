@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", async () =>
 
 async function loadMessages() 
 {
+	alert(`current user is ${username}`);
 	if (username)
 	{
 		const msgDiv = document.getElementById("messages");
