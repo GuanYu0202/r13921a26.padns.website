@@ -27,12 +27,12 @@ document.getElementById("send").addEventListener("click", async () =>
 
 document.addEventListener("DOMContentLoaded", async () => 
 {
+	alert(`current user is ${username}`);
 	await loadMessages();
 });
 
 async function loadMessages() 
 {
-	alert(`current user is ${username}`);
 	if (username)
 	{
 		const msgDiv = document.getElementById("messages");
