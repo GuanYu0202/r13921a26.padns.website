@@ -1,36 +1,33 @@
 const username = localStorage.getItem("currentUser");
 
+document.getElementById("message-form").addEventListener("click", async () => 
+{
+	const content = document.getElementById("message-content").value.trim();
+	
+	if (!content) 
+	{
+		return alert("Please write something!");
+	}
+
+	const { error } = await supabase
+		.from("messages")
+		.insert
+		([{ 
+			name: username,
+			message: content,
+		}]);
+	
+	if (error)
+	{		
+		return alert("Error when uploading message：" + error.message);
+	}
+
+	document.getElementById("message-content").value = "";
+});
+
 document.addEventListener("DOMContentLoaded", async () => 
 {
 	await loadMessages();
-
-	document.getElementById("message-form").addEventListener("submit", async (e) => 
-	{
-		e.preventDefault();
-
-		const content = document.getElementById("message-content").value.trim();
-		
-		if (!content) 
-		{
-			return alert("Please write something!");
-		}
-
-		const { error } = await supabase
-			.from("messages")
-			.insert
-			([{ 
-				name: username,
-				message: content,
-			}]);
-		
-		if (error)
-		{		
-			return alert("Error when uploading message：" + error.message);
-		}
-
-		document.getElementById("message-content").value = "";
-		await loadMessages();
-	});
 });
 
 async function loadMessages() 
@@ -69,17 +66,8 @@ async function loadMessages()
 			  <div class="message">
 				<img class="user-icon" src="${iconUrl}" />
 				<div class="message-content">
-				  <strong>${msg.username}</strong><br/>${escapeHTML(msg.content)}
+				  <strong>${msg.name}</strong><br/>${escapeHTML(msg.message)}
 				  <div class="message-time">${new Date(msg.created_at).toLocaleString()}</div>`;
-
-			if (msg.image_path) 
-			{
-				const { data: imgUrl } = await supabase.storage
-					.from("usericons")
-					.createSignedUrl(msg.image_path, 600);
-					
-				html += `<img class="message-img" src="${imgUrl.signedUrl}" />`;
-			}
 
 			if (msg.username === username) 
 			{
