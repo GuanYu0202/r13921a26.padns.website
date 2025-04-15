@@ -9,6 +9,7 @@ function loadPage(page)
 	document.getElementById("signupModal").style.display = "none";
 	document.getElementById("signinModal").style.display = "none";
 	document.getElementById("content").style.display = "block";
+		
 	// utilize Fetch API to load content dynamically
 	fetch(`./pages/${page}.html`)
 		.then(response => response.text())
@@ -115,7 +116,6 @@ window.addEventListener("DOMContentLoaded", () =>
 	const chatConfig = document.getElementById("chat");
 	const profileConfig = document.getElementById("usr_p");
 	const statusConfig = document.getElementById("status");
-	//const userDisplay = document.getElementById("user-display");
 
 	if (currentUser) 
 	{

@@ -35,54 +35,63 @@ document.addEventListener("DOMContentLoaded", async () =>
 
 async function loadMessages() 
 {
-	const msgDiv = document.getElementById("messages");
-	msgDiv.innerHTML = "";
-
-	const { data: messages, error } = await supabase
-		.from("messages")
-		.select("*")
-		.order("created_at", { ascending: false });
-
-	if (error) 
+	if (username)
 	{
-		console.error("Error when loading message: ", error);
-		return;
-	}
+		const msgDiv = document.getElementById("messages");
+		msgDiv.innerHTML = "";
 
-	document.getElementById("message-count").innerText = messages.length;
+		const { data: messages, error } = await supabase
+			.from("messages")
+			.select("*")
+			.order("created_at", { ascending: false });
 
-	for (const msg of messages) 
-	{
-		const { data: iconData } = await supabase.storage
-			.from("usericons")
-			.createSignedUrl(`${msg.username}.jpg`, 600);
+		if (error) 
+		{
+			console.error("Error when loading message: ", error);
+			return;
+		}
+
+		alert("derive message successful!");
 		
-		const iconUrl = iconData?.signedUrl || "default.png";
+		document.getElementById("message-count").innerText = messages.length;
 
-		let html = 
-		`
-		  <div class="message">
-			<img class="user-icon" src="${iconUrl}" />
-			<div class="message-content">
-			  <strong>${msg.username}</strong><br/>${escapeHTML(msg.content)}
-			  <div class="message-time">${new Date(msg.created_at).toLocaleString()}</div>`;
-
-		if (msg.image_path) 
+		for (const msg of messages) 
 		{
-			const { data: imgUrl } = await supabase.storage
+			const { data: iconData } = await supabase.storage
 				.from("usericons")
-				.createSignedUrl(msg.image_path, 600);
-				
-			html += `<img class="message-img" src="${imgUrl.signedUrl}" />`;
-		}
+				.createSignedUrl(`${msg.username}.jpg`, 600);
+			
+			const iconUrl = iconData?.signedUrl || "default.jpg";
+			
+			let html = 
+			`
+			  <div class="message">
+				<img class="user-icon" src="${iconUrl}" />
+				<div class="message-content">
+				  <strong>${msg.username}</strong><br/>${escapeHTML(msg.content)}
+				  <div class="message-time">${new Date(msg.created_at).toLocaleString()}</div>`;
 
-		if (msg.username === username) 
-		{
-			html += `<div class="delete-btn" onclick="deleteMessage(${msg.id})">Delete Message</div>`;
-		}
+			if (msg.image_path) 
+			{
+				const { data: imgUrl } = await supabase.storage
+					.from("usericons")
+					.createSignedUrl(msg.image_path, 600);
+					
+				html += `<img class="message-img" src="${imgUrl.signedUrl}" />`;
+			}
 
-		html += `</div></div>`;
-		msgDiv.innerHTML += html;
+			if (msg.username === username) 
+			{
+				html += `<div class="delete-btn" onclick="deleteMessage(${msg.id})">Delete Message</div>`;
+			}
+
+			html += `</div></div>`;
+			msgDiv.innerHTML += html;
+		}
+	}
+	else
+	{
+		alert("Please sign in to access this page");
 	}
 }
 
