@@ -22,6 +22,9 @@ document.getElementById("send").addEventListener("click", async () =>
 		return alert("Error when uploading message：" + error.message);
 	}
 
+	const statusDiv = document.getElementById("send-status");
+	statusDiv.innerText = "Successful sent!";
+	
 	document.getElementById("message-content").value = "";
 });
 
