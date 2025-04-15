@@ -60,7 +60,7 @@ async function loadMessages()
 		{
 			const { data: iconData } = await supabase.storage
 				.from("usericons")
-				.createSignedUrl(`${msg.username}.jpg`, 600);
+				.createSignedUrl(`${msg.name}.jpg`, 600);
 			
 			const iconUrl = iconData?.signedUrl || "default.jpg";
 			
