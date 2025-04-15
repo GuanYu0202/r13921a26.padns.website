@@ -1,6 +1,6 @@
 const username = localStorage.getItem("currentUser");
 
-document.getElementById("message-form").addEventListener("click", async () => 
+document.getElementById("send").addEventListener("click", async () => 
 {
 	const content = document.getElementById("message-content").value.trim();
 	
