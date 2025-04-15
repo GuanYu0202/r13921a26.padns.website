@@ -58,17 +58,17 @@ document.getElementById("refresh").addEventListener("click", async () =>
 			
 			const iconUrl = iconData?.signedUrl || "default.jpg";
 			
-			let html = 
-			`
-			  <div class="message">
-				<img class="user-icon" src="${iconUrl}" />
-				<div class="message-content">
-				  <strong>${msg.name}</strong><br/>${escapeHTML(msg.message)}
-				  <div class="message-time">${new Date(msg.created_at).toLocaleString()}</div>`;
+			let html = `
+				<div class="message-row" style="display: flex; align-items: flex-start; margin-bottom: 16px;">
+					<img class="user-icon" src="${iconUrl}" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 12px;" />
+					
+					<div class="message-content" style="flex: 1;">
+						<div style="font-weight: bold;">${msg.name}</div>
+						<div>${escapeHTML(msg.message)}</div>
+						<div class="message-time" style="font-size: 12px; color: gray;">${new Date(msg.created_at).toLocaleString()}</div>`;
 
-			if (msg.name === username) 
-			{
-				html += `<div class="delete-btn" onclick="deleteMessage(${msg.id})">Delete Message</div>`;
+			if (msg.name === username) {
+				html += `<button onclick="deleteMessage(${msg.id})" style="margin-top: 5px;">Delete Message</button>`;
 			}
 
 			html += `</div></div>`;
@@ -79,12 +79,6 @@ document.getElementById("refresh").addEventListener("click", async () =>
 	{
 		alert("Please sign in to access this page");
 	}
-});
-
-document.addEventListener("DOMContentLoaded", async () => 
-{
-	alert(`current user is ${username}`);
-	await loadMessages();
 });
 
 async function deleteMessage(id) 
@@ -103,7 +97,8 @@ async function deleteMessage(id)
 	{	
 		alert("Delete failed!");
 	}
-	await loadMessages();
+	
+	alert("Please refresh messages again!");
 }
 
 function escapeHTML(str) 
