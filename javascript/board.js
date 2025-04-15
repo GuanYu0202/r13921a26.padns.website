@@ -69,7 +69,7 @@ async function loadMessages()
 				  <strong>${msg.name}</strong><br/>${escapeHTML(msg.message)}
 				  <div class="message-time">${new Date(msg.created_at).toLocaleString()}</div>`;
 
-			if (msg.username === username) 
+			if (msg.name === username) 
 			{
 				html += `<div class="delete-btn" onclick="deleteMessage(${msg.id})">Delete Message</div>`;
 			}
