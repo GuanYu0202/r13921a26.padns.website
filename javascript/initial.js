@@ -9,6 +9,13 @@ function loadPage(page)
 	document.getElementById("signupModal").style.display = "none";
 	document.getElementById("signinModal").style.display = "none";
 	document.getElementById("content").style.display = "block";
+	
+	const { data: session, error: sessionError } = await supabase.auth.refreshSession();
+	if (sessionError) 
+	{
+		alert("Failed to refresh session. Please sign in again.");
+		return;
+	}
 		
 	// utilize Fetch API to load content dynamically
 	fetch(`./pages/${page}.html`)
