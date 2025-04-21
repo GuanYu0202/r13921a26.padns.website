@@ -1,6 +1,7 @@
 const { data: currentUser, error: userError } = await supabase.auth.getUser();
+const { data: session, error: sessionError } = await supabase.auth.getSession();
 
-if (userError)
+if (userError || sessionError)
 {
 	alert("Please sign in to access this page.");
 }

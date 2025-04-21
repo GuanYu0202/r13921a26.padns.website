@@ -4,9 +4,10 @@ document.getElementById("upload-btn").addEventListener("click", async () =>
 	const file = fileInput.files[0];
 	const statusDiv = document.getElementById("upload-status");
 	
+	const { data: session, error: sessionError } = await supabase.auth.getSession();
 	const { data, error: authError } = await supabase.auth.getUser();
 	
-	if (authError || !data) 
+	if (authError || sessionError || !data) 
 	{
         alert("Please sign in to access this page.");
         return;
@@ -32,6 +33,10 @@ document.getElementById("upload-btn").addEventListener("click", async () =>
 		{
 			upsert: true,
 			contentType: file.type
+		});
+		.headers
+		({
+			Authorization: `Bearer ${access_token}`,
 		});
 
 	
