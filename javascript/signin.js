@@ -33,6 +33,6 @@ async function signin()
 	}
 	
 	alert("Sign in successful!");
-	console.log("Sign in successful:", session);
+	console.log("Sign in successful:", sessionCheck.data.session);
 	loadPage("main");
 }
