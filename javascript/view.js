@@ -4,8 +4,7 @@ async function updateViewCount()
 	let { data, error: countError } = await supabase
 		.from("view")
 		.select("count")
-		.eq("id", 1)
-		.single();
+		.eq("id", 1);
 
 	if (countError) 
 	{
