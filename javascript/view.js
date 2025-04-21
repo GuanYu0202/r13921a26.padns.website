@@ -9,7 +9,7 @@ async function updateViewCount()
 
 	if (countError) 
 	{
-		console.error("Error when obtain view count：", error);
+		console.error("Error when obtain view count：", countError);
 		return;
 	}
 
@@ -25,7 +25,7 @@ async function updateViewCount()
 
 	if (updateError) 
 	{
-		console.error("Error when update view count：", updateError);
+		console.error("Error when update view count：", countError);
 		return;
 	}
 
