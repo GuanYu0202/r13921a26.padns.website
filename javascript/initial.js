@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function()
 	if (page) {loadPage(page);}
 });
 
-window.addEventListener("DOMContentLoaded", async () => 
+async function updateLoginStatus() 
 {
 	const { data, error } = await supabase.auth.getUser();
 	const username = data?.user?.user_metadata?.username
@@ -125,4 +125,4 @@ window.addEventListener("DOMContentLoaded", async () =>
 	}
 	
 	updateUserDisplay(username);
-});
+}
