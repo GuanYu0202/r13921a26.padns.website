@@ -33,5 +33,5 @@ async function signin()
 	}
 	
 	alert("Sign in successful!");
-	location.href = "https://guanyu0202.github.io/r13921a26.padns.website/";
+	loadPage("main");
 }
