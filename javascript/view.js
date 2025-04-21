@@ -1,10 +1,10 @@
 // Part 2: visitor counter (update to supabase)
 async function updateViewCount() 
 {
-	let { data, error: countError } = await supabase
+	const { data, error: countError } = await supabase
 		.from("view")
 		.select("count")
-		.eq("id", 1);
+		.eq("id", "1");
 
 	if (countError) 
 	{

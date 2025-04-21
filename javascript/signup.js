@@ -39,7 +39,7 @@ async function signup()
 	
 	if (checkError) 
 	{
-		errorMsg.innerText = "Sign up error! Please check your email format and password format!";
+		errorMsg.innerText = "Sign up error! Please check your email format and password format, or the email has been registered!";
         return;
 	}
 

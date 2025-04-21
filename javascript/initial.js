@@ -76,7 +76,7 @@ function updateUserDisplay(username)
 {
 	if (username)
 	{
-		document.getElementById("user-display").innerText = `Welcome ${currentUser.username}! What a nice day!`;
+		document.getElementById("user-display").innerText = `Welcome ${username}! What a nice day!`;
 	}
 	else
 	{
