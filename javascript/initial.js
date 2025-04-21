@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function()
 window.addEventListener("DOMContentLoaded", async () => 
 {
 	const { data, error } = await supabase.auth.getUser();
-	const username = user?.user_metadata?.username;
+	const username = data?.user?.user_metadata?.username
 	const chatConfig = document.getElementById("chat");
 	const profileConfig = document.getElementById("usr_p");
 	const statusConfig = document.getElementById("status");
