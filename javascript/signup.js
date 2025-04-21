@@ -24,35 +24,22 @@ async function signup()
 		return;
 	}
 	
-	// is email available?
-	 const { data: existingUser, error: checkError } = await supabase
-		.from("users")
-		.select("email")
-		.eq("email", email)
-		.single();
-
-	if (existingUser) 
-	{
-		errorMsg.innerText = "Email has already been registered.";
-		return;
-	}
+	// auth method
+	const { data, error: checkError } = await supabase
+        .auth
+        .signUp({
+            email: email,
+            password: password,
+            options: {
+                data: {
+                    username: username
+                }
+            }
+        });
 	
-	// no auth method (temporary)
-	// update data to table
-	const { data, error: updateError } = await supabase
-		.from("users")
-		.insert([
-		{
-			username: username,
-			email: email,
-			password: password,
-		},
-		]);
-	
-	if (updateError) 
+	if (checkError) 
 	{
-		errorMsg.innerText = updateError.message;
-        console.error("Sign-up error: ", updateError);
+		errorMsg.innerText = "Sign up error! Please check your email format and password format!";
         return;
 	}
 

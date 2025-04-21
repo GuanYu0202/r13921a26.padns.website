@@ -4,6 +4,8 @@
     <link rel="icon" href="web.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <meta charset="UTF-8">
+	<meta http-equiv="X-Frame-Options" content="DENY">
+	<meta http-equiv="Content-Security-Policy" content="script-src 'self' https://guanyu0202.github.io; img-src 'self' https://egrpteffoyaajqxgaepx.supabase.co;">
 	<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js" defer></script>
 	<script src="javascript/initial.js" defer></script>
 	<script src="javascript/view.js" defer></script>
@@ -183,7 +185,6 @@
 	    <ul>
 		  <li><a href="#" onclick="loadPage('main'); return false;"><b>Main</b></a></li>
           <li><a href="#" onclick="loadPage('about'); return false;"><b>About Me</b></a></li>
-          <!-- <li><a href="#" onclick="loadPage('userlist'); return false;"><b>User List</b></a></li> -->
 		  <li id="chat" style="display: none;">
 		    <a href="#" onclick="loadPage('board'); return false;"><b>Chat Room!</b></a>
 		  </li>

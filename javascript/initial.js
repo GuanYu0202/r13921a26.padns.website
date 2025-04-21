@@ -25,20 +25,6 @@ function loadPage(page)
 				updateViewCount();
 			}
 			
-			if (page === "about")
-			{
-				script.src = 'javascript/about.js';
-				script.defer = true;
-				document.body.appendChild(script);
-			}
-			
-			if (page === "userlist")
-			{
-				script.src = 'javascript/userlist.js';
-				script.defer = true;
-				document.body.appendChild(script);
-			}
-			
 			if (page === "board")
 			{
 				script.src = 'javascript/board.js';
@@ -83,7 +69,7 @@ function updateUserDisplay(username)
 {
 	if (username)
 	{
-		document.getElementById("user-display").innerText = `Welcome ${username}! What a nice day!`;
+		document.getElementById("user-display").innerText = `Welcome ${currentUser.username}! What a nice day!`;
 	}
 	else
 	{
@@ -91,9 +77,9 @@ function updateUserDisplay(username)
 	}
 }
 
-function signout() 
+async function signout() 
 {
-	localStorage.removeItem("currentUser");
+	await supabase.auth.signOut();
 	alert("You have been signed out!");
 	setTimeout( () => {loadPage("main");}, 300 );
 }
@@ -110,14 +96,15 @@ document.addEventListener("DOMContentLoaded", function()
 	if (page) {loadPage(page);}
 });
 
-window.addEventListener("DOMContentLoaded", () => 
+window.addEventListener("DOMContentLoaded", async () => 
 {
-	const currentUser = localStorage.getItem("currentUser");
+	const { data: currentUser, error } = await supabase.auth.getUser();
+	const username = currentUser.username;
 	const chatConfig = document.getElementById("chat");
 	const profileConfig = document.getElementById("usr_p");
 	const statusConfig = document.getElementById("status");
 
-	if (currentUser) 
+	if (username) 
 	{
 		chatConfig.style.display = "inline-block";
 		profileConfig.style.display = "inline-block";
@@ -130,5 +117,5 @@ window.addEventListener("DOMContentLoaded", () =>
 		statusConfig.innerHTML = `<a href="#" onclick="openSigninModal(); return false;"><b>Sign In</b></a>`;
 	}
 	
-	updateUserDisplay(currentUser);
+	updateUserDisplay(username);
 });
