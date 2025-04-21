@@ -25,6 +25,13 @@ function loadPage(page)
 				updateViewCount();
 			}
 			
+			if (page === "about")
+			{
+				script.src = 'javascript/about.js';
+				script.defer = true;
+				document.body.appendChild(script);
+			}
+			
 			if (page === "board")
 			{
 				script.src = 'javascript/board.js';
