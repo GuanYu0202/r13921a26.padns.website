@@ -9,7 +9,7 @@ async function updateViewCount()
 		console.error("Error when obtain view count：", countError);
 		return;
 	}
-
+	
 	// check "count" exists in table "visitor"
 	let view_cnt = data.count;
 	view_cnt++;
