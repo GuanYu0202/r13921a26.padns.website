@@ -9,8 +9,9 @@ document.addEventListener("DOMContentLoaded", async function() {
 	}
 	currentUser = data.user;
 	
-		document.getElementById("send").addEventListener("click", async () => 
+	document.getElementById("send").addEventListener("click", async () => 
 	{
+		console.log("Send button clicked"); // 加入日誌檢查
 		const content = document.getElementById("message-content").value.trim();
 		
 		if (!content) 
@@ -35,6 +36,7 @@ document.addEventListener("DOMContentLoaded", async function() {
 		if (error)
 		{		
 			alert("Error when uploading message：" + error.message);
+			console.error("Error when uploading message:", error); // 輸出錯誤資訊
 			return;
 		}
 
