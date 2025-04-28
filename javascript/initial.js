@@ -4,7 +4,7 @@ const supabase = window.supabase.createClient(
 	"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVncnB0ZWZmb3lhYWpxeGdhZXB4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMxNjExMzcsImV4cCI6MjA1ODczNzEzN30.uYSZ-yINbOVQMqHY4FXswSCPRMvSAFTbiwhWHFdQ6jc"
 )
 
-const allowedPages = ["main", "about", "profile"];
+const allowedPages = ["main", "about", "board", "profile"];
 
 async function loadPage(page) 
 {
