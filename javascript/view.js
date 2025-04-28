@@ -4,7 +4,8 @@ async function updateViewCount()
 	const { data, error: countError } = await supabase
 		.from("view")
 		.select("count")
-		.eq("id", "1");
+		.eq("id", "1")
+		.single();
 
 	if (countError) 
 	{
@@ -13,7 +14,7 @@ async function updateViewCount()
 	}
 
 	// check "count" exists in table "visitor"
-	let view_cnt = data[0]?.count ?? 0;
+	let view_cnt = data.count;
 	view_cnt++;
 
 	// update count
