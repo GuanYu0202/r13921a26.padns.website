@@ -12,7 +12,7 @@ async function updateViewCount()
 	console.log(data);
 	
 	// check "count" exists in table "visitor"
-	let view_cnt = data.count;
+	let view_cnt = data[0].count;
 	view_cnt++;
 	
 	alert(view_cnt);
