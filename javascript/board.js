@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", async function() {
 	const { data, error: userError } = await supabase.auth.getUser();
 	if (userError)
 	{
-		alert("Please sign in to access this page.");
+		alert("Please sign in to access full functions.");
 		return;
 	}
 	currentUser = data.user;
