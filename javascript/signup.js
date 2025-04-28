@@ -25,7 +25,7 @@ async function signup()
 	}
 	
 	// auth method
-	const { data, error: checkError } = await supabase
+	const { data: signupData, error: checkError } = await supabase
         .auth
         .signUp({
             email: email,
@@ -41,6 +41,24 @@ async function signup()
 	{
 		errorMsg.innerText = "Sign up error! Please check your email format and password format, or the email has been registered!";
         return;
+	}
+	
+	const userId = signupData.user?.id;
+	if (userId) 
+	{
+		const { error: profileError } = await supabase
+			.from("profiles")
+			.insert
+			([
+				{ id: userId, username: username }
+			]);
+
+		if (profileError) 
+		{
+			console.error("Error inserting profile:", profileError);
+			errorMsg.innerText = "Sign up failed at profile creation. Please contact admin.";
+			return;
+		}
 	}
 
 	alert("Sign up successful!");

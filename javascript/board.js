@@ -1,12 +1,12 @@
 document.addEventListener("DOMContentLoaded", async function() {
 	const { data: currentUser, error: userError } = await supabase.auth.getUser();
-	const { data: session, error: sessionError } = await supabase.auth.getSession();
 
-	if (userError || sessionError)
+	if (userError)
 	{
 		alert("Please sign in to access this page.");
+		return;
 	}
-	else if (currentUser)
+	else
 	{
 		document.getElementById("send").addEventListener("click", async () => 
 		{
@@ -38,14 +38,14 @@ document.addEventListener("DOMContentLoaded", async function() {
 			}
 
 			const statusDiv = document.getElementById("send-status");
-			statusDiv.innerText = "Successful sent!";
+			statusDiv.innerText = "Successfully sent!";
 			
 			document.getElementById("message-content").value = "";
 		});
 
 		document.getElementById("refresh").addEventListener("click", async () => 
 		{
-			if (username)
+			if (currentUser.id)
 			{
 				const msgDiv = document.getElementById("messages");
 				msgDiv.innerHTML = "";
@@ -61,12 +61,10 @@ document.addEventListener("DOMContentLoaded", async function() {
 					return;
 				}
 
-				alert("obtain message successful!");
-
 				for (const msg of messages) 
 				{
 					const { data: userData, error: userError } = await supabase
-						.from("auth.users")
+						.from("profiles")
 						.select("username")
 						.eq("id", msg.user)
 						.single();
@@ -82,11 +80,11 @@ document.addEventListener("DOMContentLoaded", async function() {
 							<img class="user-icon" src="${iconUrl}" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 12px;" />
 							
 							<div class="message-content" style="flex: 1;">
-								<div style="font-weight: bold; color: #ffffff; font-size: 20px;">${msg.name}</div>
+								<div style="font-weight: bold; color: #ffffff; font-size: 20px;">${userData.username}</div>
 								<div style="color: #ffffff; font-size: 16px;">${escapeHTML(msg.message)}</div>
-								<div class="message-time" style="color: #ffffff; font-size: 14px;">${new Date(msg.created_at).toLocaleString(timeZone: 'Asia/Taipei', hour: '2-digit', minute: '2-digit', second: '2-digit')}</div>`;
+								<div class="message-time" style="color: #ffffff; font-size: 14px;">${new Date(msg.created_at).toLocaleString('zh-TW', { timeZone: 'Asia/Taipei', hour: '2-digit', minute: '2-digit', second: '2-digit' })}</div>`;
 
-					if (msg.user === currentUser.id) 
+					if (msg.user === currentUser.user.id) 
 					{
 						html += `<button style="width: 120px; height: 35px;" onclick="deleteMessage(${msg.id})" style="margin-top: 5px;">Delete Message</button>`;
 					}
@@ -111,8 +109,7 @@ document.addEventListener("DOMContentLoaded", async function() {
 			const { error } = await supabase
 				.from("messages")
 				.delete()
-				.eq("id", id);
-				.eq("user", currentUser.id)
+				.match({ id: id, user: currentUser.id })
 			
 			if (error) 
 			{	
@@ -120,7 +117,8 @@ document.addEventListener("DOMContentLoaded", async function() {
 				return;
 			}
 			
-			alert("Please refresh messages again!");
+			alert("Delete successful!");
+			document.getElementById("refresh").click();
 		}
 
 		function escapeHTML(str) 
@@ -129,4 +127,5 @@ document.addEventListener("DOMContentLoaded", async function() {
 			div.innerText = str;
 			return div.innerHTML;
 		}
-	}});
+	}
+});
