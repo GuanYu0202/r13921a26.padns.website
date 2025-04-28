@@ -17,7 +17,7 @@ async function updateViewCount()
 	// update count
 	const { error: updateError } = await supabase
 		.from("view")
-		.update({ count: view_cnt })
+		.update({ count: 'view_cnt' })
 
 	if (updateError) 
 	{
