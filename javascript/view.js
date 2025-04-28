@@ -13,6 +13,8 @@ async function updateViewCount()
 	// check "count" exists in table "visitor"
 	let view_cnt = data.count;
 	view_cnt++;
+	
+	alert(view_cnt);
 
 	// update count
 	const { error: updateError } = await supabase
