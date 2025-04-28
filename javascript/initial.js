@@ -4,8 +4,16 @@ const supabase = window.supabase.createClient(
 	"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVncnB0ZWZmb3lhYWpxeGdhZXB4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMxNjExMzcsImV4cCI6MjA1ODczNzEzN30.uYSZ-yINbOVQMqHY4FXswSCPRMvSAFTbiwhWHFdQ6jc"
 )
 
+const allowedPages = ["main", "about", "board", "profile"];
+
 async function loadPage(page) 
 {
+	if (!allowedPages.includes(page)) 
+	{
+		console.warn("Invalid page requested!");
+		return;
+	}
+	
 	document.getElementById("signupModal").style.display = "none";
 	document.getElementById("signinModal").style.display = "none";
 	document.getElementById("content").style.display = "block";
@@ -76,7 +84,7 @@ function updateUserDisplay(username)
 {
 	if (username)
 	{
-		document.getElementById("user-display").innerText = `Welcome ${username}! What a nice day!`;
+		document.getElementById("user-display").innerText = `Welcome ${escapeHTML(username)}! What a nice day!`;;
 	}
 	else
 	{
@@ -105,24 +113,40 @@ document.addEventListener("DOMContentLoaded", function()
 
 async function updateLoginStatus() 
 {
-	const { data, error } = await supabase.auth.getUser();
-	const username = data?.user?.user_metadata?.username
+	const { data: { user }, error } = await supabase.auth.getUser();
 	const chatConfig = document.getElementById("chat");
 	const profileConfig = document.getElementById("usr_p");
 	const statusConfig = document.getElementById("status");
 
-	if (username) 
+	if (user) 
 	{
+		const username = user.user_metadata?.username || user.email || "Guest";
 		chatConfig.style.display = "inline-block";
 		profileConfig.style.display = "inline-block";
-		statusConfig.innerHTML = `<a href="#" onclick="signout(); return false;"><b>Sign Out</b></a>`;
+		statusConfig.innerHTML = "";
+		const a = document.createElement("a");
+		a.href = "#";
+		a.innerHTML = "<b>Sign Out</b>";
+		a.onclick = function() { signout(); return false; };
+		statusConfig.appendChild(a);
+		updateUserDisplay(username);
 	} 
 	else 
 	{
 		chatConfig.style.display = "none";
 		profileConfig.style.display = "none";
-		statusConfig.innerHTML = `<a href="#" onclick="openSigninModal(); return false;"><b>Sign In</b></a>`;
+		const a = document.createElement("a");
+		a.href = "#";
+		a.innerHTML = "<b>Sign In</b>";
+		a.onclick = function() { openSigninModal(); return false; };
+		statusConfig.appendChild(a);
+		updateUserDisplay("Guest");
 	}
-	
-	updateUserDisplay(username);
+}
+
+function escapeHTML(str) 
+{
+	const div = document.createElement("div");
+	div.innerText = str;
+	return div.innerHTML;
 }

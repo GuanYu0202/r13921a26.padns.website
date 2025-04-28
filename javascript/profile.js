@@ -42,11 +42,11 @@ document.getElementById("upload-btn").addEventListener("click", async () =>
 	
 	if (error) 
 	{
-		statusDiv.innerText = "Error when uploading: " + error.message;
+		statusDiv.textContent = "Error when uploading: " + error.message;
 	}
 	else 
 	{
-		statusDiv.innerText = "Successful uploaded!";
+		statusDiv.textContent = "Successful uploaded!";
 		const { data } = await supabase
 			.storage
 			.from("usericons")
