@@ -4,19 +4,13 @@ document.getElementById("upload-btn").addEventListener("click", async () =>
 	const file = fileInput.files[0];
 	const statusDiv = document.getElementById("upload-status");
 	
-	const { data: session, error: sessionError } = await supabase.auth.getSession();
 	const { data, error: authError } = await supabase.auth.getUser();
 	
-	if (authError || sessionError || !data) 
+	if (authError || !data) 
 	{
         alert("Please sign in to access this page.");
         return;
     }
-	
-	if (data) 
-	{
-		const userId = data?.user?.id;
-	}
 	
 	if (!file) 
 	{
@@ -25,6 +19,7 @@ document.getElementById("upload-btn").addEventListener("click", async () =>
 	}
 
 	const fileExt = file.name.split('.').pop();
+	const userId = data.id;
 	const fileName = `${userId}.jpg`;
 	const { error } = await supabase
 		.storage
@@ -34,11 +29,6 @@ document.getElementById("upload-btn").addEventListener("click", async () =>
 			upsert: true,
 			contentType: file.type
 		});
-		.headers
-		({
-			Authorization: `Bearer ${access_token}`,
-		});
-
 	
 	if (error) 
 	{
@@ -47,12 +37,12 @@ document.getElementById("upload-btn").addEventListener("click", async () =>
 	else 
 	{
 		statusDiv.textContent = "Successful uploaded!";
-		const { data } = await supabase
+		const { data: signedUrlData } = await supabase
 			.storage
 			.from("usericons")
 			.createSignedUrl(fileName, 600);
 		
 		document.getElementById("preview").style.display = "block";
-		document.getElementById("icon-preview").src = data.signedUrl;
+		document.getElementById("icon-preview").src = signedUrlData.signedUrl;
 	}
 });
