@@ -3,8 +3,6 @@ async function updateViewCount()
 	const { data, error: countError } = await supabase
 		.from("view")
 		.select("count")
-		.eq("id", 1)
-		.single();
 
 	if (countError) 
 	{
@@ -20,7 +18,6 @@ async function updateViewCount()
 	const { error: updateError } = await supabase
 		.from("view")
 		.update({ count: view_cnt })
-		.eq("id", 1);
 
 	if (updateError) 
 	{
